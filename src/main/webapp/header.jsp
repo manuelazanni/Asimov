@@ -52,7 +52,7 @@
                 </div>
             </a>
 
-            <a href="cartAjax.jsp"> <span class="material-symbols-outlined cart">shopping_bag</span> </a>
+            <a href="cart.jsp"> <span class="material-symbols-outlined cart">shopping_bag</span> </a>
             <span class="material-symbols-outlined bar" onclick="apriNavBar()">menu</span>
         </div>
     </header>

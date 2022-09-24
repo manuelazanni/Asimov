@@ -12,11 +12,6 @@ import java.io.IOException;
 public class ServletLogin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request, response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
 
         String email = request.getParameter("email");
@@ -30,5 +25,10 @@ public class ServletLogin extends HttpServlet {
         }
 
         request.getRequestDispatcher("/index.jsp").include(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
     }
 }

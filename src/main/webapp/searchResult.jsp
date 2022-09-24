@@ -156,13 +156,18 @@
 
             for(ProductBean p : trovati) {
                 ArrayList<ReviewBean> reviewBean = reviewDAO.doRetrieveById(p.getId());
-                double sommaPunteggi = 0;
 
-                for (ReviewBean r : reviewBean) {
-                    sommaPunteggi += r.getPunteggio();
+                int stelle = 0;
+
+                if(reviewBean.size() > 0) {
+                    double sommaPunteggi = 0;
+
+                    for (ReviewBean r : reviewBean) {
+                        sommaPunteggi += r.getPunteggio();
+                    }
+
+                    stelle = (int) sommaPunteggi / reviewBean.size();
                 }
-
-                int stelle = (int) sommaPunteggi / reviewBean.size();
         %>
         <div class="card">
             <a href="ServletCatalog?id=<%=p.getId()%>">
@@ -206,10 +211,23 @@
                         }
                     %>
                 </div>
+                <%
+                    if(p.getQuantita() > 0){
+                %>
                 <div class="buttons">
                     <button class="buyNow" onclick="">Compra ora</button>
                     <button class="addToCart" onclick="addToCartAjax('?id=<%=p.getId()%>&quantity=1')">Aggiungi al carrello</button>
                 </div>
+                <%
+                } else{
+                %>
+                <div class="buttons">
+                    <div class="unavaible"><span>Prodotto terminato.</span></div>
+                </div>
+
+                <%
+                    }
+                %>
             </div>
         </div>
 

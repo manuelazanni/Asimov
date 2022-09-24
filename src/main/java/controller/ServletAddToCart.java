@@ -7,8 +7,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.*;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 @WebServlet(name = "ServletAddToCart", value = "/ServletAddToCart")
@@ -45,8 +48,28 @@ public class ServletAddToCart extends HttpServlet {
             }
         }
 
+        JSONArray jsonArray = new JSONArray();
+
+        for (ConnectionProductCart connection: cartBean.getCartList()) {
+            JSONObject jsonProduct = new JSONObject();
+
+            ProductBean p = productDAO.doRetrieveById(connection.getId_product());
+
+            jsonProduct.put("id", p.getId());
+            jsonProduct.put("nome", p.getNome());
+            jsonProduct.put("qty", connection.getQuantity());
+            jsonProduct.put("img", p.getImmagine());
+            jsonProduct.put("price", p.getPrezzo());
+
+            jsonArray.put(jsonProduct);
+        }
+
         session.setAttribute("cart", cartBean);
-        response.sendError(303);
+
+        PrintWriter out = response.getWriter();
+        out.write(String.valueOf(jsonArray));
+        out.flush();
+        //response.sendError(303);
         //request.getRequestDispatcher("WEB-INF/productAdded.jsp").forward(request, response);
     }
 

@@ -16,56 +16,119 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/cart.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script>
+        function removeFromCartAjax(value){
+            $.ajax({
+                url: '${pageContext.request.contextPath}/ServletRemoveFromCart' + value,
+                type: 'POST'
+            });
+
+            //stampa
+        };
+
+        function editQuantityAjax(value){
+            $.ajax({
+                url: '${pageContext.request.contextPath}/ServletAddToCart' + value,
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    $('.cartSection *').remove();
+                    if (Object.keys(data).length === 0) {
+                        $('.cartSection').append('<h1 style="text-align: center; margin-top: 2rem; color: var(--color-700)">Carrello vuoto.</h1>');
+                    } else {
+                        for(let i = 0; i < Object.keys(data).length; i++){
+                            let stringa1 = '<div class="productInCart">';
+                            let stringa2 = '<img src="' + data[i]["img"] +'" alt="' + data[i]["nome"] + '">';
+                            let stringa3 = '<h3>' + data[i]["nome"] + '</h3>';
+                            let stringa4 = '<h3>' + data[i]["price"] + '€</h3>';
+                            let stringa5 = '<div class="quantitySection">';
+                            let stringaIf = '<button class="plusMinus" onclick="editQuantityAjax(\'?id=' + data[i]["id"] + '&quantity=-1\')">-</button>';
+                            let stringa6 = '<h3>' + data[i]["qty"] + '</h3>';
+                            let stringa7 = '<button class="plusMinus" onclick="editQuantityAjax(\'?id=' + data[i]["id"] + '&quantity=1\')">\+</button>';
+                            let stringa8 = '</div><button class="deleteFromCart" onclick="removeFromCartAjax(\'?id_product=' + data[i]["id"] + '\')">Elimina</button></div>';
+
+                            if(data[i]["qty"] > 1){
+                                $('.cartSection').append(stringa1 + stringa2 + stringa3 + stringa4 + stringa5 + stringaIf + stringa6 + stringa7 + stringa8);
+                            } else{
+                                $('.cartSection').append(stringa1 + stringa2 + stringa3 + stringa4 + stringa5 + stringa6 + stringa7 + stringa8);
+                            }
+
+                                /*
+                            $('.cartSection').append('<div class="productInCart">' +
+                                '<img src="' + data[i]["img"] +'" alt="' + data[i]["nome"] + '">' +
+                                '<h3>' + data[i]["nome"] + '</h3>' +
+                                '<h3>' + data[i]["price"] + '€</h3>' +
+                                '<div class="quantitySection">');
+
+                            if(data[i]["qty"] > 1){
+                                $('.cartSection').append('<button class="plusMinus" onclick="editQuantityAjax(\'?id=' + data[i]["id"] + '&quantity=-1\')">-</button>');
+                            }
+
+                            $('.cartSection').append('<h3>' + data[i]["qty"] + '</h3>');
+                            $('.cartSection').append('<button class="plusMinus" onclick="editQuantityAjax(\'?id=' + data[i]["id"] + '&quantity=1\')">\+</button>');
+                            $('.cartSection').append('</div>');
+                            $('.cartSection').append('<button class="deleteFromCart" onclick="removeFromCartAjax(\'?id_product=' + data[i]["id"] + '\')">Elimina</button>');
+                            $('.cartSection').append('</div>');*/
+
+                        }
+                    }
+                }
+            });
+        };
+
+    </script>
 </head>
 <body>
 
 <%@ include file="header.jsp"%>
 
-    <main class="cartSection">
+<main class="cartSection">
+    <%
+        CartBean cartBean = (CartBean) request.getSession(false).getAttribute("cart");
+        CartDAO cartDAO = new CartDAO();
+        ProductDAO productDAO = new ProductDAO();
+        ArrayList<ConnectionProductCart> list;
 
-        <%
-            CartBean cb = (CartBean) request.getSession(false).getAttribute("cart");
-            CartDAO cartDAO = new CartDAO();
-            ProductDAO productDAO = new ProductDAO();
-            ArrayList<ConnectionProductCart> list;
+        if(user != null){
+            list = cartDAO.getCart(user.getId_utente());
+        } else if(cartBean != null){
+            list = cartBean.getCartList();
+        } else{
+            list = null;
+        }
 
-            if(user != null){
-                list = cartDAO.getCart(user.getId_utente());
-            } else if(cb != null){
-                    list = cb.getCartList();
-            } else{
-                list = null;
-            }
+        if(list != null){
+            for(ConnectionProductCart connection : list){
+                ProductBean p = productDAO.doRetrieveById(connection.getId_product());
+                double priceUpdate = p.getPrezzo() * connection.getQuantity();
+    %>
 
-            if(list != null){
-                for(ConnectionProductCart connection : list){
-                    ProductBean p = productDAO.doRetrieveById(connection.getId_product());
-                    double priceUpdate = p.getPrezzo() * connection.getQuantity();
-        %>
-
-        <div class="productInCart">
-            <img src="<%=p.getImmagine()%>" alt="<%=p.getNome()%>">
-            <h3><%=p.getNome()%></h3>
-            <h3><%=priceUpdate%>€</h3>
-            <div class="quantitySection">
-                <%
-                    if(connection.getQuantity() > 1) {
-                %>
-                    <button class="plusMinus" onclick="">-</button>
-                <%
-                    }
-                %>
-                <h3><%=connection.getQuantity()%></h3>
-                <button class="plusMinus">+</button>
-            </div>
-            <button class="deleteFromCart">Elimina</button>
-        </div>
-
-        <%
+    <div class="productInCart">
+        <img src="<%=p.getImmagine()%>" alt="<%=p.getNome()%>">
+        <h3><%=p.getNome()%></h3>
+        <h3><%=priceUpdate%>€</h3>
+        <div class="quantitySection">
+            <%
+                if(connection.getQuantity() > 1) {
+            %>
+            <button class="plusMinus" onclick="editQuantityAjax('?id=<%=p.getId()%>&quantity=<%=(-1)%>')">-</button>
+            <%
                 }
+            %>
+            <h3><%=connection.getQuantity()%></h3>
+            <button class="plusMinus" onclick="editQuantityAjax('?id=<%=p.getId()%>&quantity=<%=1%>')">+</button>
+        </div>
+        <button class="deleteFromCart" onclick="removeFromCartAjax('?id_product=<%=p.getId()%>')">Elimina</button>
+    </div>
+
+    <%
             }
-        %>
-    </main>
+        }
+    %>
+</main>
 
 <%@ include file="footer.jsp"%>
 

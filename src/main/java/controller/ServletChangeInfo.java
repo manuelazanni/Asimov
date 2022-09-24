@@ -18,7 +18,7 @@ public class ServletChangeInfo extends HttpServlet {
         String username = request.getParameter("username");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        String dataNascita = request.getParameter("dataNascita");
+        String telefono = request.getParameter("telefono");
         String citta = request.getParameter("citta");
         String provincia = request.getParameter("provincia");
         String indirizzo = request.getParameter("indirizzo");
@@ -45,8 +45,8 @@ public class ServletChangeInfo extends HttpServlet {
             userBean.setPassword(password);
         }
 
-        if(dataNascita.length() > 0){
-            userBean.setDataNascita(dataNascita);
+        if(telefono.length() > 0){
+            userBean.setTelefono(telefono);
         }
 
         if(citta.length() > 0){

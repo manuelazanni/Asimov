@@ -11,7 +11,7 @@ Cognome VARCHAR(30) NOT NULL,
 Username VARCHAR(30) NOT NULL,
 Email VARCHAR(100) NOT NULL,
 Passw VARCHAR(20) NOT NULL,
-Data_Nascita DATE,
+Telefono CHAR(10),
 Citta VARCHAR(20),
 Provincia CHAR(2),
 Indirizzo VARCHAR(50),
@@ -46,8 +46,17 @@ ID_Prodotto INT NOT NULL,
 Punteggio DOUBLE NOT NULL,
 Recensione VARCHAR(255) NOT NULL,
 Data_Recensione DATE,
-FOREIGN KEY (ID_Prodotto) REFERENCES Prodotto(ID_Prodotto),
-FOREIGN KEY (ID_Utente) REFERENCES Utente(ID_Utente)
+FOREIGN KEY (ID_Utente) REFERENCES Utente(ID_Utente),
+FOREIGN KEY (ID_Prodotto) REFERENCES Prodotto(ID_Prodotto)
+);
+
+-- Creazione della tabella relativa alle recensioni
+CREATE TABLE Preferiti(
+ID_Utente INT NOT NULL,
+ID_Prodotto INT NOT NULL,
+PRIMARY KEY (ID_Utente, ID_Prodotto),
+FOREIGN KEY (ID_Utente) REFERENCES Utente(ID_Utente),
+FOREIGN KEY (ID_Prodotto) REFERENCES Prodotto(ID_Prodotto)
 );
 
 -- Creazione della tabella relativa agli ordini effettuati dal cliente
@@ -88,11 +97,9 @@ CREATE TABLE Carrello (
 
 
 -- Creazione dell'amministratore
-INSERT INTO Utente (Nome, Cognome, Username, Email, Passw, Data_Nascita, Citta, Provincia, Indirizzo, Codice_Postale, Amministratore) VALUES
-('Giovanni', 'Manfredi', 'John_64', 'g.manfredi5@studenti.unisa.it', '12345678', '2000-04-06', 'Fisciano', 'SA', 'Via Giovanni Paolo II, 132', '84084', 1),
-('Giovanni', 'Manfredi', 'Amministratore', 'aa@aa.aa', 'aa', '2000-04-06', 'Fisciano', 'SA', 'Via Giovanni Paolo II, 132', '84084', 1);
-
--- g.manfredi5@studenti.unisa.it 
+INSERT INTO Utente (Nome, Cognome, Username, Email, Passw, Telefono, Citta, Provincia, Indirizzo, Codice_Postale, Amministratore) VALUES
+('Giovanni', 'Manfredi', 'John_64', 'g.manfredi5@studenti.unisa.it', '12345678', '3201234567', 'Fisciano', 'SA', 'Via Giovanni Paolo II, 132', '84084', 0),
+('Giovanni', 'Manfredi', 'Amministratore', 'aa@aa.aa', 'aaaaaa', '3201234567', 'Fisciano', 'SA', 'Via Giovanni Paolo II, 132', '84084', 1);
 
 INSERT INTO Categoria (Nome_Categoria) VALUES ('Smartphone');
 INSERT INTO Categoria (Nome_Categoria) VALUES ('Tablet');
@@ -101,13 +108,15 @@ INSERT INTO Categoria (Nome_Categoria) VALUES ('Tutte le opzioni');
 
 -- SEZIONE APPLE
 INSERT INTO Prodotto (Nome, Descrizione, Prezzo, Quantita, Path_Immagine, Brand, Sconto, Nome_Categoria) VALUE
-("Ipad", "Display 10.2 - Fotocamera 8 MPX - CPU A13 Bionic - RAM 3GB - ROM 64GB", 389, 50, "images/products/apple/ipadBase.jpg", "Apple", 20, "Tablet"),
-("Ipad Air", "Display 10.9 - Fotocamera 12 MPX - CPU M1 - RAM 8GB - ROM 64GB", 699, 23, "images/products/apple/ipadAir.jpg", "Apple", 10, "Tablet"),
-("Ipad Mini", "Display 8.3 - Fotocamera 12 MPX - CPU A15 Bionic - RAM 4GB - ROM 64GB", 559, 30, "images/products/apple/ipadAir.jpg", "Apple", 5, "Tablet"),
-("Ipad Pro", "Display 12.9 - Fotocamera 12 MPX - CPU M1 - RAM 8GB - ROM 128GB", 1219, 30, "images/products/apple/ipadPro.jpg", "Apple", 15, "Tablet"),
-("Iphone 13", "--", 1219, 30, "images/products/apple/iphone13.jpg", "Apple", 15, "Smartphone"),
+("Ipad", "Display 10.2 - Fotocamera 8 MPX - CPU A13 Bionic - RAM 3GB - ROM 64GB", 389, 50, "images/products/apple/ipadBase.jpg", "Apple", 15, "Tablet"),
+("Ipad Air", "Display 10.9 - Fotocamera 12 MPX - CPU M1 - RAM 8GB - ROM 64GB", 699, 23, "images/products/apple/ipadAir.jpg", "Apple", 0, "Tablet"),
+("Ipad Mini", "Display 8.3 - Fotocamera 12 MPX - CPU A15 Bionic - RAM 4GB - ROM 64GB", 559, 30, "images/products/apple/ipadMini.jpg", "Apple", 5, "Tablet"),
+("Ipad Pro", "Display 12.9 - Fotocamera 12 MPX - CPU M1 - RAM 8GB - ROM 128GB", 1219, 30, "images/products/apple/ipadPro.jpg", "Apple", 0, "Tablet"),
+("Iphone 13", "--", 1219, 30, "images/products/apple/iphone13.jpg", "Apple", 5, "Smartphone"),
 ("Iphone 13 Pro", "--", 999, 30, "images/products/apple/iphone13Pro.jpg", "Apple", 10, "Smartphone"),
-("Iphone 13 Mini", "--", 649, 30, "images/products/apple/iphone13Mini.jpg", "Apple", 5, "Smartphone");
+("Iphone 13 Mini", "--", 649, 30, "images/products/apple/iphone13Mini.jpg", "Apple", 15, "Smartphone"),
+("Iphone 14", "--", 1029, 50, "images/products/apple/iphone14.jpg", "Apple", 5, "Smartphone"),
+("Iphone 14 Pro", "--", 1339, 40, "images/products/apple/iphone14Pro.jpg", "Apple", 10, "Smartphone");
 
 -- SEZIONE SAMSUNG
 INSERT INTO Prodotto (Nome, Descrizione, Prezzo, Quantita, Path_Immagine, Brand, Sconto, Nome_Categoria) VALUE

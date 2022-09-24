@@ -19,18 +19,18 @@
     <main class="containerFlexLoginSignup">
         <div class="containerLogin">
             <form action="ServletLogin" method="post" id="formLoginSignup">
-                <div class="email">
+                <div class="email margin-top">
                     <label for="emailBox">Email<br></label>
-                    <input type="email" id="emailBox" class="inputSpace" name="email" placeholder="Inserisci l'email" onblur="autenticaEmail()">
+                    <input type="email" id="emailBox" class="inputSpace" name="email" placeholder="Inserisci l'email" onblur="validaEmail()">
                 </div>
 
                 <div class="password margin-top">
                     <label for="passwordBox">Password<br></label>
-                    <input type="password" id="passwordBox" class="inputSpace" name="password" placeholder="Inserisci la password">
+                    <input type="password" id="passwordBox" class="inputSpace" name="password" placeholder="Inserisci la password" onblur="validaPassword()">
                 </div>
 
                 <div class="loginSignup">
-                    <input type="submit" class="button" value="Accedi" onclick="autenticaLogin()">
+                    <input type="submit" class="button" value="Accedi" onclick="login(event)">
                 </div>
 
                 <div class="registerLink">

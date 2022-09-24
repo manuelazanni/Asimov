@@ -21,36 +21,31 @@
             <form action="ServletRegistrazione" method="post" id="formLoginSignup">
                 <div class="nome">
                     <label for="nomeBox">Nome<br></label>
-                    <input type="text" id="nomeBox" class="inputSpace" name="nome" placeholder="Inserisci il nome">
+                    <input type="text" id="nomeBox" class="inputSpace" name="nome" placeholder="Inserisci il nome" onblur="validaNome()">
                 </div>
 
                 <div class="cognome margin-top">
                     <label for="cognomeBox">Cognome<br></label>
-                    <input type="text" id="cognomeBox" class="inputSpace" name="cognome" placeholder="Inserisci il cognome">
-                </div>
-
-                <div class="dataNascita margin-top">
-                    <label for="dataNascitaeBox">Data di nascita<br></label>
-                    <input type="date" id="dataNascitaeBox" class="inputSpace" name="dataNascita" placeholder="Inserisci la data di nascita">
+                    <input type="text" id="cognomeBox" class="inputSpace" name="cognome" placeholder="Inserisci il cognome" onblur="validaCognome()">
                 </div>
 
                 <div class="username margin-top">
                     <label for="usernameBox">Username<br></label>
-                    <input type="text" id="usernameBox" class="inputSpace" name="username" placeholder="Inserisci un username">
+                    <input type="text" id="usernameBox" class="inputSpace" name="username" placeholder="Inserisci un username" onblur="validaUsername()">
                 </div>
 
                 <div class="email margin-top">
                     <label for="emailBox">Email<br></label>
-                    <input type="email" id="emailBox" class="inputSpace" name="email" placeholder="Inserisci l'email" onblur="autenticaEmail()">
+                    <input type="email" id="emailBox" class="inputSpace" name="email" placeholder="Inserisci l'email" onblur="validaEmail()">
                 </div>
 
                 <div class="password margin-top">
                     <label for="passwordBox">Password<br></label>
-                    <input type="password" id="passwordBox" class="inputSpace" name="password" placeholder="Inserisci la password">
+                    <input type="password" id="passwordBox" class="inputSpace" name="password" placeholder="Inserisci la password" onblur="validaPassword()">
                 </div>
 
                 <div class="loginSignup">
-                    <input type="submit" class="button" value="Registrati" onclick="autenticaLogin()">
+                    <input type="submit" class="button" value="Registrati" onclick="signup(event)">
                 </div>
             </form>
         </div>

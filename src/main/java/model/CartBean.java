@@ -49,7 +49,21 @@ public class CartBean {
         }
     }
 
-    //remove
+    public void removeProduct(int id_product) {
+
+        int index = 0;
+
+        for (ConnectionProductCart product : this.cartList) {
+            index++;
+
+            if(product.getId_product() == id_product) {
+                this.numberObject -= product.getQuantity();
+                break;
+            }
+        }
+
+        cartList.remove(index - 1);
+    }
 
     private int numberObject;
     private ArrayList<ConnectionProductCart> cartList;

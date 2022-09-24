@@ -78,8 +78,6 @@ public class ServletFilterSearch extends HttpServlet {
             jsonArray.put(jsonProduct);
         }
 
-
-
         PrintWriter out = response.getWriter();
         out.write(String.valueOf(jsonArray));
         out.flush();

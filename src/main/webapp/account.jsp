@@ -15,6 +15,10 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+    <%
+        UserBean userBean = (UserBean) session.getAttribute("user");
+    %>
+
     <script>
         function toEdit(){
             $('.accountContainer *').remove();
@@ -23,23 +27,64 @@
                 '<h1>Gestione account</h1>' +
                 '<form method="post" action="ServletChangeInfo">' +
                     '<label for="nome">Nome</label> ' +
-                    '<input type="text" id="nome" name="nome">' +
+                    '<input type="text" id="nome" name="nome" placeholder="<%=userBean.getNome()%>">' +
                     '<label for="cognome">Cognome</label> ' +
-                    '<input type="text" id="cognome" name="cognome">' +
+                    '<input type="text" id="cognome" name="cognome" placeholder="<%=userBean.getCognome()%>">' +
                     '<label for="username">Username</label> ' +
-                    '<input type="text" id="username" name="username">' +
+                    '<input type="text" id="username" name="username" placeholder="<%=userBean.getUsername()%>">' +
                     '<label for="email">Email</label> ' +
-                    '<input type="email" id="email" name="email">' +
+                    '<input type="email" id="email" name="email" placeholder="<%=userBean.getEmail()%>">' +
                     '<label for="password">Password</label> ' +
-                    '<input type="password" id="password" name="password">' +
-                    '<label for="dataNascita">Data di nascita</label> ' +
-                    '<input type="date" id="dataNascita" name="dataNascita">' +
+                    '<input type="password" id="password" name="password" placeholder="<%=userBean.getPassword()%>">' +
                     '<label for="citta">Città</label> ' +
-                    '<input type="text" id="citta" name="citta">' +
+                    <%
+                        if(userBean.getCitta() != null){
+                    %>
+                    '<input type="text" id="citta" name="citta" placeholder="<%=userBean.getCitta()%>">' +
+                    <%
+                        } else {
+                    %>
+                    '<input type="text" id="citta" name="citta" placeholder="Inserisci la città">' +
+                    <%
+                        }
+                    %>
                     '<label for="provincia">Provincia</label> ' +
-                    '<input type="text" id="provincia" name="provincia">' +
+                    <%
+                        if(userBean.getProvincia() != null){
+                    %>
+                    '<input type="text" id="provincia" name="provincia" placeholder="<%=userBean.getProvincia()%>">' +
+                    <%
+                        } else {
+                    %>
+                    '<input type="text" id="provincia" name="provincia" placeholder="Inserisci la provincia">' +
+                    <%
+                        }
+                    %>
                     '<label for="indirizzo">Via</label> ' +
-                    '<input type="text" id="indirizzo" name="indirizzo">' +
+                    <%
+                        if(userBean.getIndirizzo() != null){
+                    %>
+                    '<input type="text" id="indirizzo" name="indirizzo" placeholder="<%=userBean.getIndirizzo()%>">' +
+                    <%
+                        } else {
+                    %>
+                    '<input type="text" id="indirizzo" name="indirizzo" placeholder="Inserisci l\'indirizzo">' +
+                    <%
+                        }
+                    %>
+                    '<label for="telefono">Telefono</label> ' +
+                    <%
+                        if(userBean.getIndirizzo() != null){
+                    %>
+                    '<input type="text" id="telefono" name="telefono" placeholder="<%=userBean.getTelefono()%>">' +
+                    <%
+                        } else {
+                    %>
+                    '<input type="text" id="telefono" name="telefono" placeholder="Inserisci il numero di telefono">' +
+                    <%
+                        }
+                    %>
+
 
                     '<input type="submit" class="button" value="conferma">' +
                 '</form>'
@@ -51,10 +96,6 @@
 
 <%@ include file="header.jsp"%>
 
-<%
-    UserBean userBean = (UserBean) session.getAttribute("user");
-%>
-
     <main>
         <div class="accountContainer">
             <h1>Gestione account</h1>
@@ -63,21 +104,18 @@
             <div>Username<p><%=userBean.getUsername()%></p></div>
             <div>Email<p><%=userBean.getEmail()%></p></div>
             <div>Password<p>********</p></div>
-            <!-- <div>Data di nascita<p><%=userBean.getDataNascita()%></p></div> -->
-
 
             <%
-                if(userBean.getDataNascita() == null || userBean.getDataNascita().length() == 0){
+                if(userBean.getTelefono() == null || userBean.getTelefono().length() == 0){
             %>
-                <div>Data di nascita<p>Nessun valore inserito.</p></div>
+                <div>Telefono<p>Nessun valore inserito.</p></div>
             <%
             } else{
             %>
-                <div>Data di nascita<p><%=userBean.getDataNascita()%></p></div>
+                <div>Telefono<p><%=userBean.getTelefono()%></p></div>
             <%
                 }
             %>
-
 
             <%
                 if(userBean.getCitta() == null || userBean.getCitta().length() == 0  ){

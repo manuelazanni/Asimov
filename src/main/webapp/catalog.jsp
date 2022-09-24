@@ -20,6 +20,24 @@
     <link rel="stylesheet" href="style/catalog.css">
     <link rel="stylesheet" href="style/filter.css">
 
+    <script>
+        function addToCartAjax(value){
+            $.ajax({
+                url: '${pageContext.request.contextPath}/ServletAddToCart' + value,
+                type: 'GET'
+            });
+
+            var popup = document.getElementById("myPopup");
+            popup.classList.remove("hide");
+            popup.classList.add("show");
+
+            setTimeout(function() {
+                popup.classList.remove("show");
+                popup.classList.add("hide");
+            },1000);
+        }
+    </script>
+
 </head>
 <body>
 

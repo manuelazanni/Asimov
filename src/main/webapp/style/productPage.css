@@ -122,12 +122,12 @@
     align-items: center;
 }
 
-.favorite{
+.favourite{
     text-align: center;
     width: 48px;
     height: 48px;
     color: black;
-    border: solid 1px black;
+    border: solid 1px black !important;
     border-radius: 5px;
     padding: 0.7rem 0;
     font-size: 1.1rem;
@@ -142,7 +142,8 @@
     background-color: #f56900;
 }
 
-.favorite:hover{
+.favourite:hover{
+    cursor: pointer;
     box-shadow: 0 0 10px rgba(0, 0, 0, 25%);
 }
 

@@ -124,9 +124,6 @@ public class ProductDAO {
 
                 ProductBean prodotto = new ProductBean();
 
-
-                System.out.println(rs.getString(2));
-
                 prodotto.setId(rs.getInt(1));
                 prodotto.setNome(rs.getString(2));
                 prodotto.setDescrizione(rs.getString(3));

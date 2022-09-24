@@ -94,27 +94,14 @@ public class UserBean {
         this.codicePostale = codicePostale;
     }
 
-    public String getDataNascita() {
-        return (dataNascita.get(Calendar.YEAR)) + "-" +
-                (dataNascita.get(Calendar.MONTH)+1) + "-" +
-                (dataNascita.get(Calendar.DAY_OF_MONTH));
+    public String getTelefono() {
+        return telefono;
     }
 
-    public void setDataNascita(String data) {
-        if(data.length()>0){
-            String[] dataSplit = data.split("-");
-
-            int anno = Integer.parseInt(dataSplit[0]);
-            int mese = Integer.parseInt(dataSplit[1])-1;
-            int giorno = Integer.parseInt(dataSplit[2]);
-
-            this.dataNascita = new GregorianCalendar(anno, mese, giorno);
-        } else{
-            this.dataNascita = new GregorianCalendar(2000, 0, 1);
-        }
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
     private int id_utente, amministratore;
-    private String nome, cognome, username, email, password, citta, provincia, indirizzo, codicePostale;
-    private GregorianCalendar dataNascita;
+    private String nome, cognome, username, email, password, citta, provincia, indirizzo, codicePostale, telefono;
 }

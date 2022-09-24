@@ -26,7 +26,7 @@ public class ServletRegistrazione extends HttpServlet {
         String username = request.getParameter("username");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        String dataNascita = request.getParameter("dataNascita");
+        String telefono = request.getParameter("telefono");
 
         UserBean user = new UserBean();
         user.setNome(nome);
@@ -34,7 +34,7 @@ public class ServletRegistrazione extends HttpServlet {
         user.setUsername(username);
         user.setEmail(email);
         user.setPassword(password);
-        user.setDataNascita(dataNascita);
+        user.setTelefono(telefono);
 
         UserDAO userDAO = new UserDAO();
         userDAO.doSave(user);

@@ -23,7 +23,7 @@ public class UserDAO {
                 user.setEmail(rs.getString(5));
                 user.setPassword(rs.getString(6));
                 if(rs.getString(7) != null){
-                    user.setDataNascita(rs.getString(7));
+                    user.setTelefono(rs.getString(7));
                 }
 
                 if(rs.getString(8) != null) {
@@ -74,7 +74,7 @@ public class UserDAO {
                 user.setEmail(rs.getString(5));
                 user.setPassword(rs.getString(6));
                 if(rs.getString(7) != null){
-                    user.setDataNascita(rs.getString(7));
+                    user.setTelefono(rs.getString(7));
                 }
 
                 if(rs.getString(8) != null) {
@@ -140,7 +140,7 @@ public class UserDAO {
         try (Connection con = ConPool.getConnection()) {
 
             Statement st = con.createStatement();
-            String query = "UPDATE Utente SET Nome = '" + userBean.getNome() + "', Cognome = '" + userBean.getCognome() + "', Username = '" + userBean.getUsername() + "', Email = '" + userBean.getEmail() + "', Passw = '" + userBean.getPassword() + "', Data_Nascita = '" + userBean.getDataNascita() +  "', Citta = '" + userBean.getCitta() + "', Provincia = '" + userBean.getProvincia() + "', Indirizzo = '" + userBean.getIndirizzo() + "', Codice_Postale = '" + userBean.getCodicePostale() + "', Amministratore = '" + userBean.getAmministratore() + "' WHERE Id_Utente = " + userBean.getId_utente();
+            String query = "UPDATE Utente SET Nome = '" + userBean.getNome() + "', Cognome = '" + userBean.getCognome() + "', Username = '" + userBean.getUsername() + "', Email = '" + userBean.getEmail() + "', Passw = '" + userBean.getPassword() + "', Telefono = '" + userBean.getTelefono() +  "', Citta = '" + userBean.getCitta() + "', Provincia = '" + userBean.getProvincia() + "', Indirizzo = '" + userBean.getIndirizzo() + "', Codice_Postale = '" + userBean.getCodicePostale() + "', Amministratore = '" + userBean.getAmministratore() + "' WHERE Id_Utente = " + userBean.getId_utente();
             st.executeUpdate(query);
 
         } catch (SQLException e) {

@@ -66,6 +66,15 @@
             console.log(this.rate.toString());
         }
 
+        function favouriteAjax(){
+            $.ajax({
+                url: '${pageContext.request.contextPath}/ServletAddToCart' + value,
+                type: 'GET'
+            });
+
+            // modifica
+        }
+
     </script>
 
 </head>
@@ -123,9 +132,7 @@
                     <span class="material-symbols-outlined">shopping_bag</span>
                     <p>Aggiungi al carrello</p>
                 </a>
-                <a href="#"class="addToFavorite">
-                    <span class="material-symbols-outlined favorite">favorite</span>
-                </a>
+                <span class="material-symbols-outlined favourite" onclick="favouriteAjax()">favorite</span>
             </div>
             <%
             } if(product.getQuantita() == 0){
@@ -135,9 +142,7 @@
                     <span class="material-symbols-outlined">close</span>
                     <p>Prodotto terminato</p>
                 </div>
-                <a href="#"class="addToFavorite">
-                    <span class="material-symbols-outlined favorite">favorite</span>
-                </a>
+                <span class="material-symbols-outlined favourite" onclick="favouriteAjax()">favorite</span>
             </div>
             <%
                 }
