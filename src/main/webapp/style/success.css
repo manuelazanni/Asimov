@@ -1,0 +1,14 @@
+body{
+background-color: var(--color-300);
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1{
+    color: var(--color-500);
+    text-align: center;
+}

@@ -1,0 +1,125 @@
+.containerFilter{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#formFilter{
+    display: grid;
+    grid-template-areas:
+    'titoloPrezzo titoloCategoria cerca'
+    'prezzo categoria cerca';
+    grid-template-columns: 40% 40% 20%;
+    background-color: var(--color-100);
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0px 5px 15px rgb(0, 0, 0, 25%);
+    padding: 1.5rem 3rem;
+    width: 80%;
+    margin-top: 2rem;
+}
+
+.filterPrice{
+    grid-area: prezzo;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.filterCategoryTitle{
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--color-500);
+    margin: 0.5rem 0;
+    grid-area: titoloCategoria;
+}
+
+.filterCategory{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+}
+
+input[type='radio']:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -3px;
+    position: relative;
+    background-color: var(--color-300);
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid white;
+}
+
+input[type='radio']:checked:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -3px;
+    position: relative;
+    background-color: var(--color-900);
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid white;
+}
+
+.filterSearch .go{
+    font-size: 3rem;
+    color: var(--color-900);
+}
+
+.filterSearch .go:hover{
+    cursor: pointer;
+    color: var(--color-500);
+}
+
+button{
+    border: none;
+    background-color: rgba(0, 0, 0, 0%);
+}
+
+#min, #max{
+    margin-top: 0.3rem;
+    border: solid var(--color-900) 2px;
+    width: 5rem;
+    border-radius: 10px;
+    padding: 0.5rem;
+    color: var(--color-500);
+}
+
+.filterPriceTitle{
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--color-500);
+    margin: 0.5rem 0;
+    grid-area: titoloPrezzo;
+}
+
+.filterCategory{
+    grid-area: categoria;
+}
+
+.filterSearch{
+    grid-area: cerca;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.range{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 1rem;
+}
+

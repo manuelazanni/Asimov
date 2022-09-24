@@ -1,0 +1,217 @@
+body{
+    background: var(--color-300);
+}
+
+.container{
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+}   
+
+.container .titolo{
+    font-size: 3.5rem;
+    color: var(--color-500);
+    margin-bottom: 3rem;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.container .containerProdotti{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 2rem;
+}
+
+.container .containerProdotti .prodotto{
+    text-align: center;
+    padding: 3rem 2rem;
+    background: var(--color-100);
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,0.1);
+    outline: 0.2rem solid var(--color-300);
+    outline-style: dashed;
+    outline-offset: -1.5rem;
+    border-radius: 3%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--color-500);
+}
+
+.container .containerProdotti .prodotto:hover{
+    outline: 0.2rem solid var(--color-700);
+    outline-offset: 0rem;
+}
+
+.container .containerProdotti .prodotto img{
+    height: 25rem;
+}
+
+.container .containerProdotti .prodotto:hover img{
+    transform: scale(0.9);
+}
+
+.container .containerProdotti .prodotto:hover h3{
+    padding: 0.5rem 0;
+    font-size: 2.5rem;
+    color: var(--color-700);
+}
+
+.container .containerProdotti .prodotto .price{
+    font-size: 1.5rem;
+    color: var(--color-500);
+}
+
+.focusProdotto{
+    position: fixed;
+    top: 0;
+    left:0;
+    min-height: 100vh;
+    width: 100%;
+    background: var(--color-700-transparent);
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.focusProdotto .preview{
+    display: none;
+    padding: 2rem;
+    text-align: center;
+    background: var(--color-100);
+    position: relative;
+    border-radius: 2%;
+    margin: 2rem;
+    width: 60rem;
+}
+
+.focusProdotto .active{
+    display: inline-block;
+}
+
+.focusProdotto .preview h3{
+    font-size: 2.5rem;
+}
+
+.focusProdotto .preview p{
+    margin-top: 20px;
+    font-size: 1.5rem;
+}
+
+.focusProdotto .preview .price{
+    margin-top: 10px;
+    font-size: 2.5rem;
+}
+
+.focusProdotto .preview .material-symbols-outlined{
+    position: absolute;
+    color: var(--color-500);
+    top: 0.5rem;
+    left: 1rem;
+    cursor: pointer;
+    font-size: 4rem;
+}
+
+.focusProdotto .preview .material-symbols-outlined:hover{
+    transform: rotate(90deg);
+}
+
+.focusProdotto .preview .buttons{
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.focusProdotto .preview .buttons a{
+    flex: 1 1 16rem;
+    padding: 1rem;
+    font-size: 1.2rem;
+}
+
+.focusProdotto .preview .buttons a.addToCart{
+    background: var(--color-300);
+    color: var(--color-700);
+    font-weight: 500;
+}
+
+.focusProdotto .preview .buttons a.buyNow{
+    background: var(--color-700);
+    color: var(--color-100);
+    font-weight: 500;
+}
+
+.focusProdotto .preview .buttons > a:hover{
+    background: var(--color-900);
+    color: var(--color-700)
+}
+
+/* MEDIA QUERY */
+@media (max-width:1240px){
+    .focusProdotto .preview{
+        width: 40rem;
+    }
+
+    .focusProdotto .preview h3{
+        font-size: 2rem;
+    }
+
+    .focusProdotto .preview p{
+        margin-top: 15px;
+        font-size: 1.3rem;
+    }
+
+    .focusProdotto .preview img{
+        height: 30rem;
+    }
+}
+ 
+@media (max-width:797px){
+    .container {
+        max-width: 1000px;
+    }
+
+    .container .containerProdotti .prodotto img{
+        height: 20rem;
+    }
+
+    .focusProdotto .preview{
+        width: 23rem;
+    }
+
+    .focusProdotto .preview h3{
+        font-size: 1.5rem;
+    }
+
+    .focusProdotto .preview p{
+        margin-top: 15px;
+        font-size: 1rem;
+    }
+
+    .focusProdotto .preview img{
+        height: 20rem;
+    }
+}
+ 
+@media (max-width:481px){
+    .focusProdotto .preview{
+        width: 18rem;
+    }
+
+    .focusProdotto .preview h3{
+        font-size: 1rem;
+    }
+
+    .focusProdotto .preview p{
+        margin-top: 15px;
+        font-size: 0.6rem;
+    }
+
+    .focusProdotto .preview img{
+        height: 10rem;
+    }
+}
+
+@media (max-width:320px){
+    .focusProdotto .preview img{
+        height: 20rem;
+    }
+}

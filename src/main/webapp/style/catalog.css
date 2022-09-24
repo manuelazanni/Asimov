@@ -1,0 +1,222 @@
+body{
+    background: var(--color-300);
+}
+
+.section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.section .productContainer{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.section .productContainer .card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    box-shadow: 0px 5px 15px rgb(0, 0, 0, 25%);
+    outline: 0.2rem solid var(--color-300);
+    outline-offset: -0.7rem;
+    width: 25rem;
+    height: 36rem;
+    margin: 2rem;
+    border-radius: 20px;
+    background-color: var(--color-100);
+    padding: 1rem;
+}
+
+.section .productContainer .card:hover{
+    outline: 0.2rem solid var(--color-900);
+    outline-offset: 0rem;
+}
+
+.section .productContainer .card .image{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section .productContainer .card:hover .image{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.section .productContainer .card:hover .info h3{
+    font-size: 1.8rem;
+}
+
+.section .productContainer .card .info .price .actualPrice{
+    font-size: 1.8rem !important;
+}
+
+.section .productContainer .card:hover .info .price .actualPrice{
+    font-size: 1.4rem !important;
+}
+
+.section .productContainer .card .info .price .oldPrice{
+    font-size: 1.2rem !important;
+    margin-right: -3rem !important;
+}
+
+.section .productContainer .card:hover .info .price .oldPrice{
+    font-size: 0.8rem !important;
+    margin-right: -2rem !important;
+}
+
+.oldPrice > i{
+    color: var(--color-900-transparent);
+    font-size: 3rem !important;
+    transform: translate(-55px, 17px) !important;
+}
+
+.section .productContainer .card:hover .info .price .oldPrice > i{
+    color: var(--color-900-transparent);
+    font-size: 2rem !important;
+    transform: translate(-35px, 11px) !important;
+}
+
+.section .productContainer .card .image img{
+    width: 100%;
+    height: auto;
+    padding: 0.5rem 2rem;
+}
+
+.section .productContainer .card .info{
+    width: 100%;
+}
+
+.section .productContainer .card .info .starsCatalog{
+    color: var(--color-900);
+}
+
+.section .productContainer .card .info h3{
+    font-size: 2rem;
+    color: var(--color-700);
+    text-transform: uppercase;
+}
+
+.section .productContainer .card .info .price{
+    font-size: 1.5rem;
+    padding: 0.3rem 0px;
+    color: var(--color-500);
+}
+
+.section .productContainer .card .info .buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 1rem;
+    height: 5rem;
+    gap: 1.5rem;
+}
+
+.section .productContainer .card:hover .info .buttons{
+    height: 6rem;
+}
+
+.section .productContainer .card .info .buttons > button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    padding: 0.8rem;
+    font-size: 0.8rem;
+    color: var(--color-700);
+    text-transform: uppercase;
+    width: 45%;
+    height: 100%;
+    font-weight: 500;
+    border-radius: 10px;
+}
+
+.section .productContainer .card .info .buttons > button:hover{
+    cursor: pointer;
+    background-color: var(--color-900);
+    color: var(--color-500);
+}
+
+.section .productContainer .card .info .buttons .buyNow{
+    color: var(--color-100);
+    background-color: var(--color-700);
+}
+
+.section .productContainer .card .info .buttons .addToCart{
+    color: var(--color-500);
+    background-color: var(--color-300);
+}
+
+.buttons .unavaible{
+    text-align: center;
+    font-weight: 500;
+    font-size: 1.4rem;
+    color: var(--color-500);
+}
+
+.popup {
+    visibility: hidden;
+    position: sticky;
+    top: 10px;
+    margin-top: 2rem;
+    background-color: var(--color-confirm-transparent);
+    color: var(--color-100);
+    text-align: center;
+    height: 0;
+    border-radius: 6px;
+    padding: 8px 0;
+    z-index: 1;
+}
+
+.hide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0;
+    visibility: hidden;
+    -webkit-animation: fadeOut 1s;
+    animation: fadeOut 1s;
+}
+
+.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    width: 20%;
+    height: 100px;
+    font-weight: 500;
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}
+
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@-webkit-keyframes fadeOut {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+
+@keyframes fadeOut {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}

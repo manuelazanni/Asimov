@@ -1,0 +1,132 @@
+body{
+    background-color: var(--color-300);
+}
+
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.accountContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    box-shadow: 0px 5px 15px rgb(0, 0, 0, 25%);
+    outline: 0.2rem solid var(--color-300);
+    outline-offset: -0.7rem;
+    width: 40rem;
+    margin: 2rem;
+    border-radius: 20px;
+    background-color: var(--color-100);
+    padding: 2rem 0;
+}
+
+.accountContainer > h1{
+    font-weight: 700;
+    color: var(--color-700);
+    text-align: center;
+}
+
+.accountContainer div{
+    text-align: center;
+    padding: 0.5rem 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-900);
+}
+
+.accountContainer form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.accountContainer form label{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 1rem 0 0 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-900);
+}
+
+.accountContainer form input[type=text],
+.accountContainer form input[type=email],
+.accountContainer form input[type=password],
+.accountContainer form input[type=date]{
+    width: 20rem;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 0.5rem 0.5rem 0.5rem 0.8rem;
+    margin-top: 0.5rem;
+    border: solid var(--color-300) 0.2rem;
+    border-radius: 30px;
+    box-shadow: 0px 0px 0px 0.2rem var(--color-100);
+}
+
+.accountContainer form input[type=submit]{
+    margin-top: 2rem;
+}
+
+.accountContainer div p{
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--color-500);
+}
+
+.button{
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--color-100);
+    border: none;
+    border-radius: 30px;
+    background-color: var(--color-500);
+}
+
+.dati{
+    background-color: var(--color-900);
+}
+
+.dati:hover{
+    background-color: var(--color-900-transparent) !important;
+}
+
+.elimina{
+    background-color: var(--color-red);
+}
+
+.elimina:hover{
+    background-color: var(--color-red-transparent) !important;
+}
+
+.amministratore{
+    background-color: var(--color-confirm);
+}
+
+.amministratore:hover{
+    background-color: var(--color-confirm-transparent) !important;
+}
+
+.button:hover{
+    cursor: pointer;
+    background-color: var(--color-300);
+    color: var(--color-500);
+}
+
+/* -------------------- MEDIA QUERY -------------------- */
+@media (max-width: 797px){
+    .accountContainer{
+        width: 30rem;
+    }
+}

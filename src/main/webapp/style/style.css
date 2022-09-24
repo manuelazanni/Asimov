@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+:root{
+    --ff-family: 'Roboto', sans-serif;
+
+    --color-100: rgb(255, 255, 255);
+    --color-300: rgb(204, 197, 185);
+    --color-500: rgb(64, 61, 57);
+    --color-700-transparent: rgb(37, 36, 34, 0.8);
+    --color-700: rgb(37, 36, 34);
+    --color-800: rgb(199, 72, 27);
+    --color-900: rgb(235, 94, 40);
+    --color-900-transparent: rgb(235, 94, 40, 50%);
+    --color-red: rgb(255, 0, 0);
+    --color-red-transparent: rgba(255, 0, 0, 50%);
+    --color-confirm: rgb(71, 160, 37);
+    --color-confirm-transparent: rgba(71, 160, 37, 50%);
+}
+
+html, body {
+    height: 100%;
+}
+
+main{
+    min-height: 80%;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none;
+    transition: all 0.2s linear;
+    font-family: var(--ff-family);
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-700);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-900);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-800);
+}
+
+.orangeUnderline{
+    text-decoration: underline var(--color-900) 2px;
+}
+
+.orangeUnderlineDiv{
+    border-bottom: var(--color-900) solid 3px;
+}
