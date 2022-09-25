@@ -3,6 +3,8 @@ package controller;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import model.CartBean;
+import model.CartDAO;
 import model.UserBean;
 import model.UserDAO;
 
@@ -21,10 +23,26 @@ public class ServletLogin extends HttpServlet {
         UserBean userBean = userDAO.doRetrieveByEmailAndPassword(email, password);
 
         if(userBean != null){
-            request.getSession().setAttribute("user", userBean);
-        }
+            HttpSession session = request.getSession();
+            session.setAttribute("user", userBean);
+            CartBean cartBean = new CartBean();
+            CartDAO cartDAO = new CartDAO();
 
-        request.getRequestDispatcher("/index.jsp").include(request, response);
+            cartBean.setCartList(cartDAO.getCart(userBean.getId_utente()));
+            session.setAttribute("cart", cartBean);
+
+            request.getRequestDispatcher("/index.jsp").include(request, response);
+        } else if(userBean == null){
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
+            request.setAttribute("msg", "Email o password errati");
+            dispatcher.include(request, response);
+        } else{
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/error.jsp");
+            request.setAttribute("type", "alert");
+            request.setAttribute("msg", "Errore imprevisto");
+            request.setAttribute("redirect", "login.jsp");
+            dispatcher.include(request, response);
+        }
     }
 
     @Override

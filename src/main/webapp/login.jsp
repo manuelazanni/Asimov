@@ -29,10 +29,18 @@
                     <input type="password" id="passwordBox" class="inputSpace" name="password" placeholder="Inserisci la password" onblur="validaPassword()">
                 </div>
 
+                <%
+                    if(request.getAttribute("msg") != null){
+                %>
+                    <div class="warningLogin">
+                        Email o password errati!
+                    </div>
+                <%
+                    }
+                %>
                 <div class="loginSignup">
                     <input type="submit" class="button" value="Accedi" onclick="login(event)">
                 </div>
-
                 <div class="registerLink">
                     <span class="regText">Nuovo utente?<br><a href="signup.jsp" class="underlineEffect">Crea un account</a></span>
                 </div>

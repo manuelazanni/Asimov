@@ -10,28 +10,19 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "ServletRemoveFromCart", value = "/ServletRemoveFromCart")
-public class ServletRemoveFromCart extends HttpServlet {
+@WebServlet(name = "ServletGetCart", value = "/ServletGetCart")
+public class ServletGetCart extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/json");
 
-        int id_product = Integer.parseInt(request.getParameter("id_product"));
-
         HttpSession session = request.getSession();
         CartBean cartBean = (CartBean) session.getAttribute("cart");
         UserBean userBean = (UserBean) session.getAttribute("user");
-        CartDAO cartDAO = new CartDAO();
         ProductDAO productDAO = new ProductDAO();
 
-        cartBean.removeProduct(id_product);
-
         if(userBean != null){
-            cartDAO.doDelete(userBean.getId_utente());
 
-            for(ConnectionProductCart connection : cartBean.getCartList()){
-                cartDAO.doSave(userBean.getId_utente(), connection.getId_product(), connection.getQuantity());
-            }
         }
 
         JSONArray jsonArray = new JSONArray();

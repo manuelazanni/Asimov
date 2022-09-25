@@ -11,6 +11,7 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="script/starRating.js"></script>
     <link rel="stylesheet" href="style/style.css">
@@ -82,6 +83,15 @@
 
 <%@ include file="header.jsp"%>
 
+    <div class="path">
+        <a href="index.jsp" class="underlineEffect underlineEffect--pp">Home</a>
+        <p> <i class='fas fa-angle-right'></i> </p>
+        <a href="catalog.jsp" class="underlineEffect underlineEffect--pp">Catalogo</a>
+        <p> <i class='fas fa-angle-right'></i> </p>
+        <a href="catalog.jspfilder " class="underlineEffect underlineEffect--pp"><%=product.getCategoria()%></a>
+        <p> <i class='fas fa-angle-right'></i> </p>
+        <p style="color: var(--color-900);"><%=product.getNome()%></p>
+    </div>
     <main>
         <div class="gridContainer">
             <div class="containerImage">

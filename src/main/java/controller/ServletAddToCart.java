@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class ServletAddToCart extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ArrayList<CartBean> list = new ArrayList<>();
+        response.setContentType("application/json");
 
         int id_product = Integer.parseInt(request.getParameter("id"));
         int quantity = Integer.parseInt(request.getParameter("quantity"));
@@ -59,7 +59,7 @@ public class ServletAddToCart extends HttpServlet {
             jsonProduct.put("nome", p.getNome());
             jsonProduct.put("qty", connection.getQuantity());
             jsonProduct.put("img", p.getImmagine());
-            jsonProduct.put("price", p.getPrezzo());
+            jsonProduct.put("price", p.getPrezzo() * connection.getQuantity());
 
             jsonArray.put(jsonProduct);
         }

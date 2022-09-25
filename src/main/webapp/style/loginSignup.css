@@ -7,7 +7,6 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 1rem 0;
 }
 
 .containerLogin, .containerSignup{
@@ -57,11 +56,25 @@ body{
 }
 
 .loginSignup{
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 1rem;
 }
 
+.warningLogin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-900);
+    margin: 1rem 0 0 0;
+}
+
 .button{
-    margin-top: 1.5rem;
     padding: 1rem 2rem;
     text-align: center;
     text-transform: uppercase;

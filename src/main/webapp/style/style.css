@@ -58,3 +58,32 @@ main{
 .orangeUnderlineDiv{
     border-bottom: var(--color-900) solid 3px;
 }
+
+.underlineEffect{
+    color: var(--color-100);
+    padding: 0.5rem 1.5rem;
+    font-size: 1.2rem;
+    position: relative;
+}
+
+.underlineEffect--pp{
+    padding: 0.5rem 0 !important;
+}
+
+.underlineEffect::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 5px;
+    width: 90%;
+    height: 2px;
+    background: var(--color-900);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 250ms ease-in;
+}
+
+.underlineEffect:hover::after{
+    transform: scaleX(1);
+    transform-origin: left;
+}
