@@ -76,17 +76,14 @@
                 </div>
             </a>
             <div class="info">
-                <h3><%=p.getNome()%></h3>
+                <div class="title"><span><%=p.getBrand()%></span><%=p.getNome()%></div>
                     <%
                         if(p.getSconto()>0){
                             double sconto = ((p.getPrezzo() * p.getSconto())/100);
                             int prezzoAggiornato = (int) (p.getPrezzo() - sconto);
                     %>
                     <div class="price">
-                        <span class="oldPrice">
-                            <%=(int)p.getPrezzo()%>€
-                            <i class="material-icons">clear</i>
-                        </span>
+                        <span class="oldPrice"><s><%=(int)p.getPrezzo()%>€</s></span>
                         <span class="actualPrice"><%=prezzoAggiornato%>€</span>
                     </div>
                 <%

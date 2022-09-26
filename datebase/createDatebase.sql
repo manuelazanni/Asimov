@@ -16,7 +16,8 @@ Citta VARCHAR(20),
 Provincia CHAR(2),
 Indirizzo VARCHAR(50),
 Codice_Postale CHAR(5),
-Amministratore INT DEFAULT 0
+Amministratore INT DEFAULT 0,
+Sospeso INT DEFAULT 0
 );
 
 -- Creazione della tabella relativa alla categoria dei vari prodotti
@@ -97,9 +98,10 @@ CREATE TABLE Carrello (
 
 
 -- Creazione dell'amministratore
-INSERT INTO Utente (Nome, Cognome, Username, Email, Passw, Telefono, Citta, Provincia, Indirizzo, Codice_Postale, Amministratore) VALUES
-('Giovanni', 'Manfredi', 'John_64', 'g.manfredi5@studenti.unisa.it', '12345678', '3201234567', 'Fisciano', 'SA', 'Via Giovanni Paolo II, 132', '84084', 0),
-('Giovanni', 'Manfredi', 'Amministratore', 'aa@aa.aa', 'aaaaaa', '3201234567', 'Fisciano', 'SA', 'Via Giovanni Paolo II, 132', '84084', 1);
+INSERT INTO Utente (Nome, Cognome, Username, Email, Passw, Telefono, Citta, Provincia, Indirizzo, Codice_Postale, Amministratore, Sospeso) VALUES
+('Giovanni', 'Manfredi', 'John_64', 'g.manfredi5@studenti.unisa.it', '12345678', '3201234567', 'Fisciano', 'SA', 'Via Giovanni Paolo II, 132', '84084', 0, 0),
+('Giovanni', 'Manfredi', 'Amministratore', 'aa@aa.aa', 'aaaaaa', '3201234567', 'Fisciano', 'SA', 'Via Giovanni Paolo II, 132', '84084', 1, 0),
+('Paolo', 'Naska', 'Paolo29', 'bb@bb.bb', 'bbbbbb', '3201234567', 'Fisciano', 'SA', 'Via Giovanni Paolo II, 132', '84084', 0, 1);
 
 INSERT INTO Categoria (Nome_Categoria) VALUES ('Smartphone');
 INSERT INTO Categoria (Nome_Categoria) VALUES ('Tablet');

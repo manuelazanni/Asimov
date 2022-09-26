@@ -1,59 +1,66 @@
 package controller;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import model.ProductBean;
-import model.ProductDAO;
-import model.ReviewBean;
-import model.ReviewDAO;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
+import jakarta.servlet.annotation.*;
+import model.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.util.*;
 
-@WebServlet(name = "ServletFilterSearch", value = "/ServletFilterSearch")
-public class ServletFilterSearch extends HttpServlet {
+@WebServlet(name = "ServletOrderProduct", value = "/ServletOrderProduct")
+public class ServletOrderProduct extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/json");
+        System.out.println("sono qui");
 
-        //response.sendError(404);
+        String scelta = request.getParameter("scelta");
 
+        ProductDAO productDAO = new ProductDAO();
+        ArrayList<ProductBean> listaProdotti = productDAO.doRetrieveAll();
 
-        int minPrice = Integer.parseInt(request.getParameter("min"));
-        int maxPrice = Integer.parseInt(request.getParameter("max"));
-        String category = request.getParameter("category");
+        ArrayList<ProductBean> ordinato = new ArrayList<>();
 
-        if (maxPrice < minPrice){
-            maxPrice = minPrice;
-        }
+        if(scelta.compareToIgnoreCase("prezzoCrescente") == 0){
+            while(listaProdotti.size() != 0){
+                ProductBean max = listaProdotti.get(0);
 
-        ArrayList<ProductBean> trovati = (ArrayList<ProductBean>) request.getSession(false).getAttribute("productFind");
-        ArrayList<ProductBean> filtrati = new ArrayList<>();
-
-        for(ProductBean p : trovati){
-            if(category.compareToIgnoreCase("Tutte le opzioni") == 0){
-                if(p.getPrezzo() >= minPrice && p.getPrezzo() <= maxPrice){
-                    filtrati.add(p);
+                for(ProductBean p : listaProdotti){
+                    if(max.getPrezzo() < p.getPrezzo()){
+                        max = p;
+                    }
                 }
-            } else if(p.getPrezzo() >= minPrice && p.getPrezzo() <= maxPrice && p.getCategoria().compareToIgnoreCase(category) == 0){
-                filtrati.add(p);
+                ordinato.add(max);
+                listaProdotti.remove(max);
             }
         }
 
-        System.out.println("salve");
+        if(scelta.compareToIgnoreCase("prezzoDecrescente") == 0){
+            while(listaProdotti.size() != 0){
+                ProductBean min = listaProdotti.get(0);
+
+                for(ProductBean p : listaProdotti){
+                    if(min.getPrezzo() > p.getPrezzo()){
+                        min = p;
+                    }
+                }
+                ordinato.add(min);
+                listaProdotti.remove(min);
+            }
+        }
 
         JSONArray jsonArray = new JSONArray();
-        ReviewDAO reviewDAO = new ReviewDAO();
 
-        for (ProductBean product: filtrati) {
+        System.out.println("sono qui 1");
+        for (ProductBean product: ordinato) {
+            System.out.println("sono qui 2");
             JSONObject jsonProduct = new JSONObject();
 
+            ReviewDAO reviewDAO = new ReviewDAO();
             ArrayList<ReviewBean> reviewBean = reviewDAO.doRetrieveById(product.getId());
             double sommaPunteggi = 0;
             int counter = 0;
@@ -64,7 +71,6 @@ public class ServletFilterSearch extends HttpServlet {
             }
 
             int stelle = (int) sommaPunteggi/counter;
-
 
             jsonProduct.put("id", product.getId());
             jsonProduct.put("nome", product.getNome());
@@ -78,8 +84,10 @@ public class ServletFilterSearch extends HttpServlet {
             jsonProduct.put("categoria", product.getCategoria());
 
             jsonArray.put(jsonProduct);
+            System.out.println("sono qui 3");
         }
 
+        System.out.println("sono qui 4");
         PrintWriter out = response.getWriter();
         out.write(String.valueOf(jsonArray));
         out.flush();

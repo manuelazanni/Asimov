@@ -24,15 +24,15 @@ public class ServletFilter extends HttpServlet {
         int maxPrice = Integer.parseInt(request.getParameter("max"));
         String category = request.getParameter("category");
 
+        ProductDAO productDAO = new ProductDAO();
+        ReviewDAO reviewDAO = new ReviewDAO();
+        JSONArray jsonArray = new JSONArray();
+
         if (maxPrice < minPrice){
             maxPrice = minPrice;
         }
 
-        ProductDAO productDAO = new ProductDAO();
         ArrayList<ProductBean> productList = productDAO.doRetrieveByFilter(minPrice, maxPrice, category);
-        ReviewDAO reviewDAO = new ReviewDAO();
-
-        JSONArray jsonArray = new JSONArray();
 
         for (ProductBean product: productList) {
             JSONObject jsonProduct = new JSONObject();
@@ -48,7 +48,6 @@ public class ServletFilter extends HttpServlet {
 
             int stelle = (int) sommaPunteggi/counter;
 
-
             jsonProduct.put("id", product.getId());
             jsonProduct.put("nome", product.getNome());
             jsonProduct.put("descrizione", product.getDescrizione());
@@ -62,6 +61,8 @@ public class ServletFilter extends HttpServlet {
 
             jsonArray.put(jsonProduct);
         }
+
+        System.out.println(jsonArray.length());
 
         PrintWriter out = response.getWriter();
         out.write(String.valueOf(jsonArray));

@@ -33,7 +33,7 @@
             let form = $('#formFilter');
 
             $.ajax({
-                url: '${pageContext.request.contextPath}/ServletFilterSearch',
+                url: '${pageContext.request.contextPath}/ServletFilter',
                 type: 'GET',
                 data: form.serialize(),
                 dataType: 'json',
@@ -74,7 +74,6 @@
                     }
                 }
             });
-
         }
 
         function addToCartAjax(value){
@@ -114,11 +113,11 @@
             <div class="range">
                 <div class="minRange">
                     <label for="min">Minimo</label><br>
-                    <input type="number" id="min" name="min" value="1" placeholder="0€">
+                    <input type="number" id="min" name="min" placeholder="0€">
                 </div>
                 <div class="maxRange">
                     <label for="max">Massimo</label><br>
-                    <input type="number" id="max" name="max" value="100" placeholder="2000€">
+                    <input type="number" id="max" name="max" placeholder="2000€">
                 </div>
             </div>
         </div>
@@ -176,17 +175,14 @@
                 </div>
             </a>
             <div class="info">
-                <h3><%=p.getNome()%></h3>
+                <div class="title"><span><%=p.getBrand()%></span><%=p.getNome()%></div>
                 <%
                     if(p.getSconto()>0){
                         double sconto = ((p.getPrezzo() * p.getSconto())/100);
                         int prezzoAggiornato = (int) (p.getPrezzo() - sconto);
                 %>
                 <div class="price">
-                        <span class="oldPrice">
-                            <%=(int)p.getPrezzo()%>€
-                            <i class="material-icons">clear</i>
-                        </span>
+                    <span class="oldPrice"><s><%=(int)p.getPrezzo()%>€</s></span>
                     <span class="actualPrice"><%=prezzoAggiornato%>€</span>
                 </div>
                 <%

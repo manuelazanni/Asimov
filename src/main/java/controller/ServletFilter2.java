@@ -1,10 +1,8 @@
 package controller;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
+import jakarta.servlet.annotation.*;
 import model.ProductBean;
 import model.ProductDAO;
 import model.ReviewBean;
@@ -16,14 +14,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-@WebServlet(name = "ServletFilterSearch", value = "/ServletFilterSearch")
-public class ServletFilterSearch extends HttpServlet {
+@WebServlet(name = "ServletFilter2", value = "/ServletFilter2")
+public class ServletFilter2 extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/json");
-
-        //response.sendError(404);
-
 
         int minPrice = Integer.parseInt(request.getParameter("min"));
         int maxPrice = Integer.parseInt(request.getParameter("max"));
@@ -33,25 +28,13 @@ public class ServletFilterSearch extends HttpServlet {
             maxPrice = minPrice;
         }
 
-        ArrayList<ProductBean> trovati = (ArrayList<ProductBean>) request.getSession(false).getAttribute("productFind");
-        ArrayList<ProductBean> filtrati = new ArrayList<>();
-
-        for(ProductBean p : trovati){
-            if(category.compareToIgnoreCase("Tutte le opzioni") == 0){
-                if(p.getPrezzo() >= minPrice && p.getPrezzo() <= maxPrice){
-                    filtrati.add(p);
-                }
-            } else if(p.getPrezzo() >= minPrice && p.getPrezzo() <= maxPrice && p.getCategoria().compareToIgnoreCase(category) == 0){
-                filtrati.add(p);
-            }
-        }
-
-        System.out.println("salve");
-
-        JSONArray jsonArray = new JSONArray();
+        ProductDAO productDAO = new ProductDAO();
+        ArrayList<ProductBean> productList = productDAO.doRetrieveByFilter(minPrice, maxPrice, category);
         ReviewDAO reviewDAO = new ReviewDAO();
 
-        for (ProductBean product: filtrati) {
+        JSONArray jsonArray = new JSONArray();
+
+        for (ProductBean product: productList) {
             JSONObject jsonProduct = new JSONObject();
 
             ArrayList<ReviewBean> reviewBean = reviewDAO.doRetrieveById(product.getId());
@@ -87,6 +70,6 @@ public class ServletFilterSearch extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request, response);
+
     }
 }
