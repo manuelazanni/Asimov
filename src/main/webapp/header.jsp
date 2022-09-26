@@ -31,7 +31,7 @@
             <%
                 } else{
             %>
-            <a href="account.jsp">
+            <a href="ServletAccount">
             <%
                 }
             %>

@@ -102,6 +102,14 @@ public class UserBean {
         this.telefono = telefono;
     }
 
-    private int id_utente, amministratore;
+    public int getSospeso() {
+        return sospeso;
+    }
+
+    public void setSospeso(int sospeso) {
+        this.sospeso = sospeso;
+    }
+
+    private int id_utente, amministratore, sospeso;
     private String nome, cognome, username, email, password, citta, provincia, indirizzo, codicePostale, telefono;
 }

@@ -2,7 +2,6 @@ body{
     background-color: var(--color-300);
 }
 
-
 main{
     display: flex;
     justify-content: center;
