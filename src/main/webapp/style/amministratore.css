@@ -3,16 +3,64 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 3rem;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    gap: 5rem;
 }
 
-.containerUsers{
-    padding: 1rem;
+.containerAdmin div a{
+    margin: 0 1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: var(--color-100);
+    font-weight: 700;
+    background-color: var(--color-900);
+    font-size: 1.3rem;
+    padding: 2rem;
+    border: 1px solid rgb(207, 203, 202);
+    border-radius: 20px;
 }
 
+.containerAdmin a:hover{
+    background-color: var(--color-800);
+}
+
+.containerAdmin h1{
+    text-transform: uppercase;
+}
+
+.containerManager{
+    padding: 0 2.5rem;
+}
+
+.containerManager .gest{
+    display: grid;
+    grid-template-columns: 15% 70% 15%;
+    grid-template-areas:
+        'back title other';
+}
+
+.containerManager .gest h1{
+    grid-area: title;
+}
+
+.containerManager .gest button{
+    cursor: pointer;
+    background-image: url("../images/icons/back.svg");
+    margin: auto;
+    background-repeat: no-repeat;
+    background-color: rgba(0,0,0,0%);
+    border: none;
+    height: 2.5rem;
+    width: 2.5rem;
+    grid-area: back;
+}
+
+.containerManager .gest div{
+    grid-area: other;
+}
 
 #tabella {
-    font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
 }
@@ -20,6 +68,11 @@
 #tabella td, #tabella th {
     border: 1px solid #ddd;
     padding: 8px;
+}
+
+#tabella tr td span {
+    text-transform: uppercase;
+    font-weight: 700;
 }
 
 #tabella tr:nth-child(even){
@@ -38,4 +91,68 @@
     background-color: var(--color-500);
     text-transform: uppercase;
     color: var(--color-100);
+}
+
+.buttonsTable{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+}
+
+.buttonsTable button{
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 0.2rem 0;
+    font-weight: 700;
+    border-radius: 5px;
+    min-width: 4.5rem;
+    width: 30%;
+}
+
+.buttonsTable--sospendi{
+    background-color: var(--color-900);
+    color: var(--color-100);
+}
+
+.buttonsTable--sospendi:hover{
+    background-color: var(--color-900-transparent);
+}
+
+.buttonsTable--sblocca{
+    background-color: rgb(255,255,153);
+    color: var(--color-700);
+}
+
+.buttonsTable--modifica{
+    background-color: rgb(135,206,250);
+    color: var(--color-700);
+}
+
+.buttonsTable--modifica:hover{
+    background-color: rgb(179, 224, 255);
+}
+
+
+
+.buttonsTable--sblocca:hover{
+    background-color: rgb(255,255,204);
+}
+
+.buttonsTable--elimina{
+    background-color: var(--color-red);
+    color: var(--color-100);
+}
+
+.buttonsTable--elimina:hover{
+    background-color: var(--color-red-transparent);
+}
+
+@media (max-width: 797px){
+    #tabella {
+        display: inline-block;
+        overflow: auto;
+    }
 }

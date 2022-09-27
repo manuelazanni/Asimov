@@ -33,7 +33,7 @@
                     if(request.getAttribute("msg") != null){
                 %>
                     <div class="warningLogin">
-                        Email o password errati!
+                        <%=(String) request.getAttribute("msg")%>
                     </div>
                 <%
                     }

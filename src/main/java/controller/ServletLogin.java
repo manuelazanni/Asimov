@@ -23,6 +23,13 @@ public class ServletLogin extends HttpServlet {
         UserBean userBean = userDAO.doRetrieveByEmailAndPassword(email, password);
 
         if(userBean != null){
+            if(userBean.getSospeso() == 1){
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
+                request.setAttribute("msg", "Il tuo account è momentaneamente sospeso.");
+                dispatcher.forward(request, response);
+                return;
+            }
+
             HttpSession session = request.getSession();
             session.setAttribute("user", userBean);
             CartBean cartBean = new CartBean();

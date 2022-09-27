@@ -227,8 +227,10 @@ public class UserDAO {
         try (Connection con = ConPool.getConnection()) {
 
             Statement st = con.createStatement();
-            String query = "DELETE FROM Utente WHERE ID_Utente = " + userBean.getId_utente();
+            String query = "SET foreign_key_checks = 0";
+            String query2 = "DELETE FROM Utente WHERE ID_Utente = " + userBean.getId_utente();
             st.executeUpdate(query);
+            st.executeUpdate(query2);
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

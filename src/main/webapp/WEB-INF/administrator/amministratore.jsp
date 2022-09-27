@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = "icon" href="../../images/icons/logoA.svg" type="image/x-icon">
+    <link rel = "icon" href="${pageContext.request.contextPath}/images/icons/logoA.svg" type="image/x-icon">
     <title>Asimov: Amministratore</title>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
@@ -19,9 +19,14 @@
 <%@ include file="../../header.jsp"%>
 
     <main class="containerAdmin">
-        <a href="#">Gestisci ordini</a>
-        <a href="#">Gestisci prodotti</a>
-        <a href="ServletAmministratore?pagina=utenti">Gestisci utenti</a>
+        <h1>Pagina amministratore</h1>
+        <div>
+            <a href="#">Gestisci ordini</a>
+            <a href="ServletAmministratore?pagina=aggiungiProdotti">Aggiungi prodotto</a>
+            <a href="ServletAmministratore?pagina=prodotti">Gestisci prodotti</a>
+            <a href="ServletAmministratore?pagina=utenti">Gestisci utenti</a>
+        </div>
+
     </main>
 
 <%@ include file="../../footer.jsp"%>

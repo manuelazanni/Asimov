@@ -14,11 +14,6 @@ import java.util.regex.Pattern;
 public class ServletRegistrazione extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request,response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
 
         String nome = request.getParameter("nome");
@@ -43,5 +38,10 @@ public class ServletRegistrazione extends HttpServlet {
 
         session.setAttribute("user", user);
         request.getRequestDispatcher("/index.jsp").include(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
     }
 }

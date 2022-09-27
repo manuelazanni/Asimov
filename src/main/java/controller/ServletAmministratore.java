@@ -26,6 +26,14 @@ public class ServletAmministratore extends HttpServlet {
             indirizzo = "WEB-INF/administrator/amministratore.jsp";
         }
 
+        if(operazione.compareToIgnoreCase("prodotti") == 0){
+            indirizzo = "WEB-INF/administrator/manageProduct.jsp";
+        }
+
+        if(operazione.compareToIgnoreCase("aggiungiProdotti") == 0){
+            indirizzo = "WEB-INF/administrator/addProduct.jsp";
+        }
+
         if(user != null && user.getAmministratore() == 1) {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher(indirizzo);
             requestDispatcher.forward(request, response);

@@ -38,6 +38,21 @@ public class ProductDAO {
         }
     }
 
+    public void doDelete(ProductBean userBean) {
+
+        try (Connection con = ConPool.getConnection()) {
+
+            Statement st = con.createStatement();
+            String query = "SET foreign_key_checks = 0";
+            String query2 = "DELETE FROM Prodotto WHERE ID_Prodotto = " + userBean.getId();
+            st.executeUpdate(query);
+            st.executeUpdate(query2);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
      /*
     public void doUpdate(ProductBean productBean)
     {
@@ -55,25 +70,6 @@ public class ProductDAO {
             throw new RuntimeException(e);
         }
     }
-
-
-    public boolean isRegistered(String nome, String descrizione) {
-        try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement(
-                    "SELECT * " +
-                            "FROM Prodotto " +
-                            "WHERE Nome=? AND Descrizione=?");
-
-            ps.setString(1, nome);
-            ps.setString(2, descrizione);
-
-            ResultSet rs = ps.executeQuery();
-
-            return rs.next();
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
     } */
 
     public ProductBean doRetrieveById(int id_product) {
@@ -222,6 +218,25 @@ public class ProductDAO {
             }
 
             return listaProdotti;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public boolean isAlreadyRegistered(String name, String description) {
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(
+                    "SELECT * " +
+                            "FROM Prodotto " +
+                            "WHERE Nome=? AND Descrizione=?");
+
+            ps.setString(1, name);
+            ps.setString(2, description);
+
+            ResultSet rs = ps.executeQuery();
+
+            return rs.next();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

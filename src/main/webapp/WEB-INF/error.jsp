@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = "icon" href="images/icons/logoA.svg" type="image/x-icon">
+    <link rel = "icon" href="${pageContext.request.contextPath}/images/icons/logoA.svg" type="image/x-icon">
     <title>Asimov: Attenzione</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -22,6 +22,8 @@
 <%@ include file="../header.jsp"%>
 
 <main style="display: flex; justify-content: center; align-items: center; text-align: center; flex-direction: column; gap: 1rem;">
+    <img src="${pageContext.request.contextPath}/images/manage/warning.png" alt="Error" style="height: 15rem;">
+
     <h1 style="color: var(--color-red)"><%= (String) request.getAttribute("msg") %></h1>
     <h3>A breve sarai reindirizzato alla home.</h3>
 </main>

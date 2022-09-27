@@ -101,7 +101,9 @@ CREATE TABLE Carrello (
 INSERT INTO Utente (Nome, Cognome, Username, Email, Passw, Telefono, Citta, Provincia, Indirizzo, Codice_Postale, Amministratore, Sospeso) VALUES
 ('Giovanni', 'Manfredi', 'John_64', 'g.manfredi5@studenti.unisa.it', '12345678', '3201234567', 'Fisciano', 'SA', 'Via Giovanni Paolo II, 132', '84084', 0, 0),
 ('Giovanni', 'Manfredi', 'Amministratore', 'aa@aa.aa', 'aaaaaa', '3201234567', 'Fisciano', 'SA', 'Via Giovanni Paolo II, 132', '84084', 1, 0),
-('Paolo', 'Naska', 'Paolo29', 'bb@bb.bb', 'bbbbbb', '3201234567', 'Fisciano', 'SA', 'Via Giovanni Paolo II, 132', '84084', 0, 1);
+('Paolo', 'Naska', 'Paolo29', 'bb@bb.bb', 'bbbbbb', '3201234567', 'Fisciano', 'SA', 'Via Giovanni Paolo II, 132', '84084', 0, 1),
+('Test1', 'Test1', 'Test1', 'cc@cc.cc', 'cccccc', '3201234567', 'Fisciano', 'SA', 'Via Giovanni Paolo II, 132', '84084', 0, 1),
+('Test2', 'Test2', 'Test2', 'dd@dd.dd', 'dddddd', '3201234567', 'Fisciano', 'SA', 'Via Giovanni Paolo II, 132', '84084', 0, 1);
 
 INSERT INTO Categoria (Nome_Categoria) VALUES ('Smartphone');
 INSERT INTO Categoria (Nome_Categoria) VALUES ('Tablet');
