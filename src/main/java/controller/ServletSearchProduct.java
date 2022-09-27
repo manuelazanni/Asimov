@@ -28,8 +28,7 @@ public class ServletSearchProduct extends HttpServlet {
         for(ProductBean p : productList){
             if(p.getDescrizione().toLowerCase().contains(field.toLowerCase()) ||
                 p.getNome().toLowerCase().contains(field.toLowerCase()) ||
-                    p.getBrand().toLowerCase().contains(field.toLowerCase()) ||
-                    p.getCategoria().toLowerCase().contains(field.toLowerCase())){
+                    p.getBrand().toLowerCase().contains(field.toLowerCase())){
                         productFind.add(p);
             }
         }

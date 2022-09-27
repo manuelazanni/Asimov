@@ -1,0 +1,36 @@
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.cardNews{
+    margin: 0 2rem 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 90%;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgb(0, 0, 0, 25%);
+}
+
+.cardNews .titoloNews{
+    padding: 1rem;
+    background-color: var(--color-900);
+    color: var(--color-100);
+    border-radius: 10px 10px 0 0;
+    width: 100%;
+    font-size: 1.4rem;
+    text-align: center;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.cardNews .testoNews{
+    padding: 2.5rem;
+    font-size: 1.2rem;
+    border: 1px solid rgb(207, 203, 202);
+}

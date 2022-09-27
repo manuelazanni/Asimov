@@ -45,7 +45,6 @@ public class ServletLogin extends HttpServlet {
             dispatcher.include(request, response);
         } else{
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/error.jsp");
-            request.setAttribute("type", "alert");
             request.setAttribute("msg", "Errore imprevisto");
             request.setAttribute("redirect", "login.jsp");
             dispatcher.include(request, response);

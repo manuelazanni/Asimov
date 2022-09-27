@@ -3,6 +3,7 @@ package controller;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import model.UserBean;
 
 import java.io.IOException;
 
@@ -10,9 +11,19 @@ import java.io.IOException;
 public class ServletAccount extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String indirizzo = "WEB-INF/account.jsp";
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher(indirizzo);
-        requestDispatcher.forward(request, response);
+        UserBean userBean = (UserBean) request.getSession().getAttribute("user");
+
+        RequestDispatcher dispatcher;
+
+        if(userBean == null){
+            dispatcher = request.getRequestDispatcher("/WEB-INF/error.jsp");
+            request.setAttribute("msg", "Il profilo non esiste.");
+            request.setAttribute("redirect", "index.jsp");
+            dispatcher.include(request, response);
+        }
+
+        dispatcher = request.getRequestDispatcher("/WEB-INF/account.jsp");
+        dispatcher.include(request, response);
     }
 
     @Override

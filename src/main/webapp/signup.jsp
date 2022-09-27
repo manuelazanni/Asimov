@@ -44,6 +44,16 @@
                     <input type="password" id="passwordBox" class="inputSpace" name="password" placeholder="Inserisci la password" onblur="validaPassword()">
                 </div>
 
+                <%
+                    if(request.getAttribute("msg") != null){
+                %>
+                <div class="warningLogin">
+                    <%=(String) request.getAttribute("msg")%>
+                </div>
+                <%
+                    }
+                %>
+
                 <div class="loginSignup">
                     <input type="submit" class="button" value="Registrati" onclick="signup(event)">
                 </div>

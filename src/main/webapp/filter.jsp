@@ -18,45 +18,57 @@
 
     <script>
         function printProductAjax(data){
+            $('#productContainerID *').remove();
+
             if(Object.keys(data).length === 0){
                 $('#productContainerID').append('<h1 style="text-align: center; margin-top: 2rem; color: var(--color-700)">Nessun risultato.</h1>');
             } else{
                 for(let i = 0; i < Object.keys(data).length; i++){
 
-                    let image = '<div class="image"><img src="' + data[i]["immagine"] + '" alt="' + data[i]["nome"] + '"></div>';
-                    let info;
-                    let stars = '<div class="stars">';
+                    let scontoString = '';
+                    let prezzo = data[i]['prezzo'] - 0;
+                    let sconto = (data[i]['prezzo'] * data[i]['sconto'])/100;
+                    let prezzoAggiornato = data[i]['prezzo'] - sconto;
 
-                    if(data[i]["sconto"].valueOf() > 0) {
-                        let sconto = ((data[i]["prezzo"].valueOf() * data[i]["sconto"].valueOf()) / 100);
-                        let prezzoAggiornato = data[i]["prezzo"].valueOf() - sconto;
-
-                        info = '<div class="info"><h3>' + data[i]["nome"] + '</h3><div class="price">' +
-                            '<span class="oldPrice" style="padding-right: 10px;">' + data[i]["prezzo"] + '<i class="material-icons" style="padding-left: 15px;">clear</i></span><span class="actualPrice">' +
-                            prezzoAggiornato.toFixed(0) + '€</span>' + '</div>';
+                    if(data[i]['sconto'] > 0){
+                        scontoString = '<div class="price"><span class="oldPrice"><s>' + Math.trunc(prezzo) + '€</s></span><span class="actualPrice">' + Math.trunc(prezzoAggiornato) + '€</span></div>';
                     } else{
-                        info = '<div class="price">' + data[i]["prezzo"].valueOf().toFixed(0) + '€</div>';
+                        scontoString = '<div class="price">' + prezzo + '€</div>';
                     }
 
-                    let rec = data[i]["punteggio"].valueOf().toFixed(0);
-                    for(let i = 0; i < rec; i++ ){
-                        stars.concat('<i class="fa fa-star"></i>');
-                    }
-                    for(let i = rec; i < 5; i++){
-                        stars.concat('<i class="fa fa-star-o"></i>');
-                    }
-                    stars.concat('</div>');
+                    let stelleString = '';
+                    let stelle = data[i]['punteggio'];
 
-                    let buttons = '<div class="buttons"><a class="buyNow">Compra ora</a><a href="ServletAddToCart?id='+data[i]["id"]+'&quantity=1" class="addToCart">Aggiungi al carrello</a></div>';
+                    for(let i = 0; i < stelle; i++){
+                        stelleString = stelleString.concat('<i class="fa fa-star"></i>');
+                    }
 
-                    //$('#productContainerID').append('<div class="card">' + image + info + stars + buttons);
-                    $('#productContainerID').append('<div class="card">' + image + '</div>');
+                    for(let i = stelle; i < 5; i++){
+                        stelleString = stelleString.concat('<i class="fa fa-star-o"></i>');
+                    }
+
+                    stelleString = stelleString.concat('</div>');
+
+                    let quantitaString = '';
+
+                    if(data[i]['quantita'] > 0){
+                        quantitaString = quantitaString.concat('<div class="buttons"><button class="buyNow" onclick="">Compra ora</button><button class="addToCart" onclick="addToCartAjax(\'?id=' + data[i]['id'] + '&quantity=1\')">Aggiungi al carrello</button></div>');
+                    } else{
+                        quantitaString = quantitaString.concat('<div class="buttons"><div class="unavaible"><span>Prodotto terminato.</span></div></div>');
+                    }
+
+                    $('#productContainerID').append(
+                        '<div class="card">' +
+                        '<a href="ServletCatalog?id=' + data[i]["id"] + '">' +
+                        '<div class="image"><img src="' + data[i]["immagine"] + '" alt="' + data[i]["nome"] + '"></div>' +
+                        '</a>' +
+                        '<div class="info">' +
+                        '<div class="title"><span>' + data[i]["brand"] + '</span>' + data[i]["nome"] + '</div>' + scontoString + '<div class="starsCatalog">' + stelleString + quantitaString + '</div></div>');
                 }
             }
         }
 
         function orderAjax(){
-            $('#productContainerID *').remove();
             let value = '/ServletOrderProduct?scelta=' + $('#ordinamento').val();
 
             $.ajax({
@@ -64,7 +76,6 @@
                 type: 'GET',
                 dataType: 'json',
                 success: function (data){
-                    console.log(data[0]['nome']);
                     printProductAjax(data);
                 }
             });

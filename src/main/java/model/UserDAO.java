@@ -236,4 +236,21 @@ public class UserDAO {
             throw new RuntimeException(e);
         }
     }
+
+    public boolean isRegistered(String email) {
+
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(
+                    "SELECT Email FROM Utente WHERE Email=?");
+
+            ps.setString(1, email);
+
+            ResultSet rs = ps.executeQuery();
+
+            return rs.next();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

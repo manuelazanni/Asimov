@@ -60,9 +60,9 @@
     <!-- Navigation Bar -->
     <nav class="navigationBar">
         <a href="catalog.jsp" class="underlineEffect">Catalogo</a>
-        <a href="#" class="underlineEffect">Offerte</a>
-        <a href="#" class="underlineEffect">News</a>
-        <a href="#" class="underlineEffect">Chi siamo</a>
+        <a href="sales.jsp" class="underlineEffect">Offerte</a>
+        <a href="news.jsp" class="underlineEffect">News</a>
+        <a href="#" class="underlineEffect">Collaborazioni</a>
     </nav>
 
 </body>

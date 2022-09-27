@@ -1,0 +1,114 @@
+.containerManagerProduct{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 60%;
+    margin: 3rem auto;
+    border: 1px solid rgb(207, 203, 202);
+    border-radius: 20px;
+    box-shadow: 0px 5px 15px rgb(0, 0, 0, 25%);
+}
+
+#formAddProduct{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 1rem;
+}
+
+#formAddProduct div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+#formAddProduct div label, #titleImage{
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+#formAddProduct div input[type=text],
+#formAddProduct div input[type=number]
+{
+    margin: 0.5rem;
+    font-size: 1rem;
+    font-weight: 400;
+    padding: 0.5rem;
+    border: solid var(--color-300) 0.1rem;
+    border-radius: 5px;
+}
+
+#formAddProduct div textarea{
+    margin: 0.5rem;
+    font-size: 1rem;
+    font-weight: 400;
+    padding: 0.5rem;
+    border: solid var(--color-300) 0.1rem;
+    border-radius: 5px;
+}
+
+#formAddProduct .productImage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin: 0 1rem;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.productImage .justSpace{
+    margin: 0 0.5rem 0.5rem 0.5rem;
+    border: solid var(--color-300) 0.1rem;
+    border-radius: 5px;
+}
+
+.productImage .justSpace label{
+    padding: 1rem 1.5rem;
+}
+
+.productImage .justSpace label:hover{
+    cursor: pointer;
+}
+
+#formAddProduct .productImage img{
+    max-height: 8rem;
+    margin-bottom: 0.5rem;
+}
+
+.productCategory > select{
+    cursor: pointer;
+    border-radius: 5px;
+    border: solid var(--color-300) 0.1rem;
+    padding: 0.3rem;
+}
+
+#addProductDB input{
+    margin: 1rem 0;
+    padding: 1rem 2rem;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--color-100);
+    border: none;
+    border-radius: 20px;
+    background-color: var(--color-900);
+}
+
+#addProductDB input:hover{
+    cursor: pointer;
+    background-color: var(--color-800);
+}

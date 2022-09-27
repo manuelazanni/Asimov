@@ -1,11 +1,5 @@
 <%@ page import="model.ProductBean" %>
-<%@ page import="model.ProductDAO" %><%--
-  Created by IntelliJ IDEA.
-  User: Gianni
-  Date: 27/09/2022
-  Time: 01:18
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="model.ProductDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>

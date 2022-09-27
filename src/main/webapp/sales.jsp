@@ -1,5 +1,6 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="model.*" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="it-IT">
@@ -9,20 +10,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel = "icon" href="images/icons/logoA.svg" type="image/x-icon">
 
-    <%
-        String field = (String) request.getSession(false).getAttribute("field");
-    %>
-
-    <title>Asimov: <%=""+field%></title>
+    <title>Asimov: Offerte</title>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="style/style.css">
-    <link rel="stylesheet" href="style/filter.css">
     <link rel="stylesheet" href="style/catalog.css">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="style/filter.css">
 
     <script>
         function addToCartAjax(value){
@@ -41,28 +37,25 @@
             },1000);
         }
     </script>
+
 </head>
 <body>
 
 <%@ include file="header.jsp"%>
 
-<%
-    ArrayList<ProductBean> trovati = (ArrayList<ProductBean>) request.getSession(false).getAttribute("productFind");
-    if(trovati.size() == 0){
-%>
-    <h1 style="text-align: center; margin-top: 2rem; color: var(--color-700)">Nessun risultato.</h1>
-<%
-    }
-%>
-
+<h1 class="orangeUnderline" style="text-align: center; padding-top: 2rem; text-transform: uppercase;">Le offerte della settimana</h1>
 <main class="section">
     <span class="popup" id="myPopup">Prodotto aggiunto ✓</span>
 
     <div id="productContainerID" class="productContainer">
         <%
+            ProductDAO productDAO = new ProductDAO();
+            ArrayList<ProductBean> listaProdotti = productDAO.doRetrieveAll();
+
             ReviewDAO reviewDAO = new ReviewDAO();
 
-            for(ProductBean p : trovati) {
+            for(ProductBean p : listaProdotti) {
+                if(p.getSconto() != 0){
                 ArrayList<ReviewBean> reviewBean = reviewDAO.doRetrieveById(p.getId());
 
                 int stelle = 0;
@@ -85,19 +78,19 @@
             </a>
             <div class="info">
                 <div class="title"><span><%=p.getBrand()%></span><%=p.getNome()%></div>
+                    <%
+                        if(p.getSconto()>0){
+                            double sconto = ((p.getPrezzo() * p.getSconto())/100);
+                            int prezzoAggiornato = (int) (p.getPrezzo() - sconto);
+                    %>
+                    <div class="price">
+                        <span class="oldPrice"><s><%=(int)p.getPrezzo()%>€</s></span>
+                        <span class="actualPrice"><%=prezzoAggiornato%>€</span>
+                    </div>
                 <%
-                    if(p.getSconto()>0){
-                        double sconto = ((p.getPrezzo() * p.getSconto())/100);
-                        int prezzoAggiornato = (int) (p.getPrezzo() - sconto);
+                    } else{
                 %>
-                <div class="price">
-                    <span class="oldPrice"><s><%=(int)p.getPrezzo()%>€</s></span>
-                    <span class="actualPrice"><%=prezzoAggiornato%>€</span>
-                </div>
-                <%
-                } else{
-                %>
-                <div class="price"><%=(int)p.getPrezzo()%>€</div>
+                    <div class="price"><%=(int)p.getPrezzo()%>€</div>
                 <%
                     }
                 %>
@@ -106,12 +99,12 @@
                         int i;
                         for(i = 0; i < stelle; i++){
                     %>
-                    <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
                     <%
                         }
                         for(i = stelle; i < 5; i++){
                     %>
-                    <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
                     <%
                         }
                     %>
@@ -124,7 +117,7 @@
                     <button class="addToCart" onclick="addToCartAjax('?id=<%=p.getId()%>&quantity=1')">Aggiungi al carrello</button>
                 </div>
                 <%
-                } else{
+                    } else{
                 %>
                 <div class="buttons">
                     <div class="unavaible"><span>Prodotto terminato.</span></div>
@@ -137,6 +130,7 @@
         </div>
 
         <%
+                }
             }
         %>
     </div>

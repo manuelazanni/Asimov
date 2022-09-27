@@ -25,6 +25,15 @@ public class ServletChangeInfo extends HttpServlet {
 
         UserBean userBean = (UserBean) request.getSession().getAttribute("user");
 
+        RequestDispatcher dispatcher;
+
+        if(userBean == null){
+            dispatcher = request.getRequestDispatcher("/WEB-INF/error.jsp");
+            request.setAttribute("msg", "Il profilo non esiste.");
+            request.setAttribute("redirect", "index.jsp");
+            dispatcher.include(request, response);
+        }
+
         if(nome.length() > 0){
             userBean.setNome(nome);
         }
@@ -64,8 +73,8 @@ public class ServletChangeInfo extends HttpServlet {
         UserDAO userDAO = new UserDAO();
         userDAO.doUpdate(userBean);
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("account.jsp");
-        requestDispatcher.include(request, response);
+        dispatcher = request.getRequestDispatcher("/WEB-INF/account.jsp");
+        dispatcher.include(request, response);
     }
 
     @Override

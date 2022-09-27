@@ -15,14 +15,23 @@ public class ServletDeleteAccount extends HttpServlet {
         UserDAO userDAO = new UserDAO();
         UserBean userBean = (UserBean) request.getSession().getAttribute("user");
 
+        RequestDispatcher dispatcher;
+
+        if(userBean == null){
+            dispatcher = request.getRequestDispatcher("/WEB-INF/error.jsp");
+            request.setAttribute("msg", "Il profilo non esiste.");
+            request.setAttribute("redirect", "index.jsp");
+            dispatcher.include(request, response);
+        }
+
         userDAO.doDelete(userBean);
 
         HttpSession session = request.getSession(false);
         session.invalidate();
 
-        String indirizzo = "successDelete.jsp";
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher(indirizzo);
-        requestDispatcher.include(request,response);
+        dispatcher = request.getRequestDispatcher("/WEB-INF/success.jsp");
+        request.setAttribute("msg", "Profilo eliminato correttamente!");
+        dispatcher.include(request, response);
     }
 
     @Override

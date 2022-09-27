@@ -127,7 +127,7 @@
               <%
                 if(u.getSospeso() == 1){
               %>
-                <button class="buttonsTable--sblocca" onclick="suspendUser(<%=u.getId_utente()%>, 'sblocca')">Sbocca</button>
+                <button class="buttonsTable--sblocca" onclick="suspendUser(<%=u.getId_utente()%>, 'sblocca')">Sblocca</button>
               <%
                 } else{
               %>

@@ -69,8 +69,6 @@ public class ServletAddToCart extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.write(String.valueOf(jsonArray));
         out.flush();
-        //response.sendError(303);
-        //request.getRequestDispatcher("WEB-INF/productAdded.jsp").forward(request, response);
     }
 
     @Override

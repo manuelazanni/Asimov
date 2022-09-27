@@ -16,14 +16,13 @@ public class ServletOrderProduct extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/json");
-        System.out.println("sono qui");
 
         String scelta = request.getParameter("scelta");
 
         ProductDAO productDAO = new ProductDAO();
         ArrayList<ProductBean> listaProdotti = productDAO.doRetrieveAll();
 
-        ArrayList<ProductBean> ordinato = new ArrayList<>();
+        JSONArray jsonArray = new JSONArray();
 
         if(scelta.compareToIgnoreCase("prezzoCrescente") == 0){
             while(listaProdotti.size() != 0){
@@ -34,12 +33,38 @@ public class ServletOrderProduct extends HttpServlet {
                         max = p;
                     }
                 }
-                ordinato.add(max);
-                listaProdotti.remove(max);
-            }
-        }
 
-        if(scelta.compareToIgnoreCase("prezzoDecrescente") == 0){
+                ReviewDAO reviewDAO = new ReviewDAO();
+                ArrayList<ReviewBean> reviewBean = reviewDAO.doRetrieveById(max.getId());
+                int stelle = 0;
+                if(reviewBean.size() > 0) {
+                    double sommaPunteggi = 0;
+
+                    for (ReviewBean r : reviewBean) {
+                        sommaPunteggi += r.getPunteggio();
+                    }
+
+                    stelle = (int) sommaPunteggi / reviewBean.size();
+                }
+
+                JSONObject jsonProduct = new JSONObject();
+
+
+                jsonProduct.put("id", max.getId());
+                jsonProduct.put("nome", max.getNome());
+                jsonProduct.put("descrizione", max.getDescrizione());
+                jsonProduct.put("prezzo", max.getPrezzo());
+                jsonProduct.put("quantita", max.getQuantita());
+                jsonProduct.put("immagine", max.getImmagine());
+                jsonProduct.put("brand", max.getBrand());
+                jsonProduct.put("sconto", max.getSconto());
+                jsonProduct.put("punteggio", stelle);
+                jsonProduct.put("categoria", max.getCategoria());
+
+                listaProdotti.remove(max);
+                jsonArray.put(jsonProduct);
+            }
+        }  else{
             while(listaProdotti.size() != 0){
                 ProductBean min = listaProdotti.get(0);
 
@@ -48,46 +73,24 @@ public class ServletOrderProduct extends HttpServlet {
                         min = p;
                     }
                 }
-                ordinato.add(min);
+
+                JSONObject jsonProduct = new JSONObject();
+
+                jsonProduct.put("id", min.getId());
+                jsonProduct.put("nome", min.getNome());
+                jsonProduct.put("descrizione", min.getDescrizione());
+                jsonProduct.put("prezzo", min.getPrezzo());
+                jsonProduct.put("quantita", min.getQuantita());
+                jsonProduct.put("immagine", min.getImmagine());
+                jsonProduct.put("brand", min.getBrand());
+                jsonProduct.put("sconto", min.getSconto());
+                jsonProduct.put("categoria", min.getCategoria());
+
                 listaProdotti.remove(min);
+                jsonArray.put(jsonProduct);
             }
         }
 
-        JSONArray jsonArray = new JSONArray();
-
-        System.out.println("sono qui 1");
-        for (ProductBean product: ordinato) {
-            System.out.println("sono qui 2");
-            JSONObject jsonProduct = new JSONObject();
-
-            ReviewDAO reviewDAO = new ReviewDAO();
-            ArrayList<ReviewBean> reviewBean = reviewDAO.doRetrieveById(product.getId());
-            double sommaPunteggi = 0;
-            int counter = 0;
-
-            for (ReviewBean r : reviewBean) {
-                counter++;
-                sommaPunteggi += r.getPunteggio();
-            }
-
-            int stelle = (int) sommaPunteggi/counter;
-
-            jsonProduct.put("id", product.getId());
-            jsonProduct.put("nome", product.getNome());
-            jsonProduct.put("descrizione", product.getDescrizione());
-            jsonProduct.put("prezzo", product.getPrezzo());
-            jsonProduct.put("quantita", product.getQuantita());
-            jsonProduct.put("immagine", product.getImmagine());
-            jsonProduct.put("brand", product.getBrand());
-            jsonProduct.put("sconto", product.getSconto());
-            jsonProduct.put("punteggio", stelle);
-            jsonProduct.put("categoria", product.getCategoria());
-
-            jsonArray.put(jsonProduct);
-            System.out.println("sono qui 3");
-        }
-
-        System.out.println("sono qui 4");
         PrintWriter out = response.getWriter();
         out.write(String.valueOf(jsonArray));
         out.flush();

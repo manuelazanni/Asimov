@@ -26,7 +26,6 @@
             <a href="ServletAmministratore?pagina=prodotti">Gestisci prodotti</a>
             <a href="ServletAmministratore?pagina=utenti">Gestisci utenti</a>
         </div>
-
     </main>
 
 <%@ include file="../../footer.jsp"%>

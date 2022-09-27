@@ -112,9 +112,10 @@ public class ServletAddProduct extends HttpServlet {
                 }
             }
         } else {
-            String address = "index.jsp";
-            RequestDispatcher dispatcher = request.getRequestDispatcher(address);
-            dispatcher.forward(request,response);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/error.jsp");
+            request.setAttribute("msg", "Permesso non autorizzato.");
+            request.setAttribute("redirect", "index.jsp");
+            dispatcher.include(request, response);
         }
     }
 

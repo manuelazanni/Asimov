@@ -25,7 +25,7 @@
     <img src="${pageContext.request.contextPath}/images/manage/warning.png" alt="Error" style="height: 15rem;">
 
     <h1 style="color: var(--color-red)"><%= (String) request.getAttribute("msg") %></h1>
-    <h3>A breve sarai reindirizzato alla home.</h3>
+    <h3>A breve sarai reindirizzato alla pagina corretta.</h3>
 </main>
 
 <%@ include file="../footer.jsp"%>

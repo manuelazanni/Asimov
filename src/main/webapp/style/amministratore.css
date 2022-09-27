@@ -3,12 +3,23 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     flex-direction: column;
     gap: 5rem;
 }
 
+.containerAdmin div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
 .containerAdmin div a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 0 1rem;
     text-decoration: none;
     text-transform: uppercase;
@@ -19,6 +30,9 @@
     padding: 2rem;
     border: 1px solid rgb(207, 203, 202);
     border-radius: 20px;
+    text-align: center;
+    width: 20%;
+    height: 7rem;
 }
 
 .containerAdmin a:hover{
@@ -34,6 +48,7 @@
 }
 
 .containerManager .gest{
+    width: 100%;
     display: grid;
     grid-template-columns: 15% 70% 15%;
     grid-template-areas:
@@ -154,5 +169,9 @@
     #tabella {
         display: inline-block;
         overflow: auto;
+    }
+
+    .containerAdmin div a{
+        font-size: 1rem;
     }
 }
