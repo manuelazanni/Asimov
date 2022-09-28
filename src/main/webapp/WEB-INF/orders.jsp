@@ -42,7 +42,7 @@
             <div class="cardOrder">
                 <div><img src="<%=product.getImmagine()%>" alt="<%=product.getNome()%>"></div>
                 <div><%=product.getNome()%></div>
-                <div><%=product.getPrezzo()%>0€</div>
+                <div><%=product.getPrezzo()%>;0€</div>
                 <div>Quantità ordinata: <%=cpo.getQuantity()%></div>
             </div>
         <%

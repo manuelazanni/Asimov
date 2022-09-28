@@ -92,11 +92,10 @@
                 <td><%=p.getCategoria()%></td>
                 <td>
                     <div class="buttonsTable">
-                        <!--
                         <form method="get" action="ServletEditProduct">
                             <input type="hidden" value="<%=p.getId()%>" name="id">
                             <button type="submit" class="buttonsTable--modifica">Modifica</button>
-                        </form> -->
+                        </form>
                         <button class="buttonsTable--elimina" onclick="removeProduct(<%=p.getId()%>)">Elimina</button>
                     </div>
                 </td>

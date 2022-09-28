@@ -97,8 +97,6 @@
     <div class="recapCart"></div>
 </div>
 
-
-
 <%@ include file="footer.jsp"%>
 
 </body>

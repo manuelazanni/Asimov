@@ -21,10 +21,6 @@ public class ServletGetCart extends HttpServlet {
         UserBean userBean = (UserBean) session.getAttribute("user");
         ProductDAO productDAO = new ProductDAO();
 
-        if(userBean != null){
-
-        }
-
         JSONArray jsonArray = new JSONArray();
 
         for(ConnectionProductCart connection : cartBean.getCartList()){

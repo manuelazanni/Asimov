@@ -60,27 +60,28 @@ public class ServletRegistrazione extends HttpServlet {
         if (matchFound){
             counter++;
         }
+        System.out.println(email);
 
-
-        if(counter == 5 && !(userDAO.isRegistered(email))){
-
-            UserBean user = new UserBean();
-
-            user.setNome(nome);
-            user.setCognome(cognome);
-            user.setUsername(username);
-            user.setEmail(email);
-            user.setPassword(password);
-
-            userDAO.doSave(user);
-
-            session.setAttribute("user", user);
-            request.getRequestDispatcher("/index.jsp").include(request, response);
-        } else if(userDAO.isRegistered(email)){
+        if(userDAO.isRegistered(email)) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
             request.setAttribute("msg", "Email già in uso.");
             dispatcher.include(request, response);
-        } else{
+        }
+
+        UserBean user = new UserBean();
+
+        user.setNome(nome);
+        user.setCognome(cognome);
+        user.setUsername(username);
+        user.setEmail(email);
+        user.setPassword(password);
+
+        userDAO.doSave(user);
+
+        session.setAttribute("user", user);
+        request.getRequestDispatcher("/index.jsp").include(request, response);
+
+        if(counter != 5){
             RequestDispatcher dispatcher = request.getRequestDispatcher("/signup.jsp");
             request.setAttribute("msg", "Errore durante la registrazione.");
             dispatcher.include(request, response);
