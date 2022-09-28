@@ -21,7 +21,6 @@
     <main class="containerAdmin">
         <h1>Pagina amministratore</h1>
         <div>
-            <a href="#">Gestisci ordini</a>
             <a href="ServletAmministratore?pagina=aggiungiProdotti">Aggiungi prodotto</a>
             <a href="ServletAmministratore?pagina=prodotti">Gestisci prodotti</a>
             <a href="ServletAmministratore?pagina=utenti">Gestisci utenti</a>

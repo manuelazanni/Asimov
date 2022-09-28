@@ -160,11 +160,13 @@
                 if(userBean.getAmministratore() == 1){
             %>
                 <a href="ServletLogout" class="button">Logout</a>
+                <a href="ServletInfoOrders" class="button ordine">Miei ordini</a>
                 <a href="ServletAmministratore?pagina=amministratore" class="button amministratore">Pagina amministratore</a>
             <%
                 } else{
             %>
                 <a href="ServletLogout" class="button">Logout</a>
+                <a href="ServletInfoOrders" class="button ordine">Miei ordini</a>
                 <button onclick="toEdit()" class="button dati">Modifica dati</button>
                 <a href="ServletDeleteAccount" class="button elimina">Elimina account</a>
             <%

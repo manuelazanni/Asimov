@@ -33,8 +33,11 @@
 
         function printCartAjax(data){
             $('.cartSection *').remove();
+            $('.recapCartContainer *').remove();
+            let totale = 0;
             if (Object.keys(data).length === 0) {
                 $('.cartSection').append('<h1 style="text-align: center; margin-top: 2rem; color: var(--color-700)">Carrello vuoto.</h1>');
+                $('.recapCartContainer *').remove();
             } else {
                 for(let i = 0; i < Object.keys(data).length; i++){
                     let stringa1 = '<div class="productInCart">';
@@ -47,12 +50,15 @@
                     let stringa7 = '<button class="plusMinus" onclick="editQuantityAjax(\'?id=' + data[i]["id"] + '&quantity=1\')">\+</button>';
                     let stringa8 = '</div><button class="deleteFromCart" onclick="removeFromCartAjax(\'?id_product=' + data[i]["id"] + '\')">Elimina</button></div>';
 
+                    totale += data[i]["price"];
+
                     if(data[i]["qty"] > 1){
                         $('.cartSection').append(stringa1 + stringa2 + stringa3 + stringa4 + stringa5 + stringaIf + stringa6 + stringa7 + stringa8);
                     } else{
                         $('.cartSection').append(stringa1 + stringa2 + stringa3 + stringa4 + stringa5 + stringa6 + stringa7 + stringa8);
                     }
                 }
+                $('.recapCartContainer').append('<div class="recapCart"><span>Numero di oggetti <p>' + Object.keys(data).length + '</p></span><span>Totale <p>' + totale + '€</p></span><a href="ServletPayment" value="ordina">Effettua ordine</a></div>');
             }
         };
 
@@ -87,6 +93,11 @@
 <main class="cartSection">
     <h1 style="text-align: center; margin-top: 2rem; color: var(--color-700)">Carrello vuoto.</h1>
 </main>
+<div class="recapCartContainer">
+    <div class="recapCart"></div>
+</div>
+
+
 
 <%@ include file="footer.jsp"%>
 

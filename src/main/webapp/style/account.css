@@ -98,7 +98,17 @@ main{
 }
 
 .dati:hover{
-    background-color: var(--color-900-transparent) !important;
+    background-color: var(--color-800) !important;
+    color: var(--color-100) !important;
+}
+
+.ordine{
+    background-color: rgb(63, 103, 229);
+}
+
+.ordine:hover{
+    background-color: rgb(101, 136, 250) !important;
+    color: var(--color-100) !important;
 }
 
 .elimina{
@@ -106,7 +116,8 @@ main{
 }
 
 .elimina:hover{
-    background-color: var(--color-red-transparent) !important;
+    background-color: #d91c1c !important;
+    color: var(--color-100) !important;
 }
 
 .amministratore{
@@ -114,7 +125,7 @@ main{
 }
 
 .amministratore:hover{
-    background-color: var(--color-confirm-transparent) !important;
+    background-color: #0dbb0d !important;
 }
 
 .button:hover{

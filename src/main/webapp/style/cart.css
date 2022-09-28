@@ -1,5 +1,5 @@
 body{
-    background-color: var(--color-300);
+    background-color: var(--color-100);
 }
 
 .cartSection{
@@ -11,10 +11,8 @@ body{
 }
 
 .productInCart{
-    padding: 0.5rem 1.5rem;
     margin: 1rem 0;
-    outline: 0.2rem solid var(--color-300);
-    outline-offset: -0.7rem;
+    border: 1px solid rgb(207, 203, 202);
     box-shadow: 0px 5px 15px rgb(0, 0, 0, 25%);
     border-radius: 20px;
     padding: 2rem;
@@ -68,10 +66,60 @@ body{
     height: 5rem;
 }
 
+.recapCart{
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 1.5rem 2.5rem;
+    border-radius: 10px;
+    width: 95%;
+    box-shadow: 0 5px 15px rgb(0, 0, 0, 25%);
+    border: 1px solid rgb(207, 203, 202);
+}
+
+.recapCart span{
+    text-transform: uppercase;
+    display: flex;
+    color: var(--color-700);
+    font-weight: 500;
+    gap: 1rem;
+    font-size: 1.3rem;
+}
+
+.recapCart span p {
+    font-weight: 700;
+    color: var(--color-900);
+}
+
+.recapCart a{
+    padding: 0.8rem 1.5rem;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--color-100);
+    border: none;
+    border-radius: 30px;
+    background-color: var(--color-900);
+}
+
+.recapCart a:hover{
+    cursor: pointer;
+    background-color: var(--color-800);
+}
+
 /* -------------------- MEDIA QUERY -------------------- */
 @media (max-width: 797px){
     .productInCart{
         flex-direction: column;
         gap: 1rem;
+    }
+
+    .recapCart{
+        gap: 1rem;
+        display: flex;
+        flex-direction: column;
     }
 }

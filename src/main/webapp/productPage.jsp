@@ -72,9 +72,14 @@
                 url: '${pageContext.request.contextPath}/ServletAddToCart' + value,
                 type: 'GET'
             });
-
-            // modifica
         }
+
+        function addToCartAjax(value){
+        $.ajax({
+            url: '${pageContext.request.contextPath}/ServletAddToCart' + value,
+            type: 'GET'
+        });
+    }
 
     </script>
 
@@ -138,11 +143,11 @@
                 if(product.getQuantita() > 0){
             %>
             <div class="containerButtons">
-                <a href="ServletAddToCart" class="addToCart--productpPage">
+                <button onclick="addToCartAjax('?id=<%=product.getId()%>&quantity=1')" class="addToCart--productpPage">
                     <span class="material-symbols-outlined">shopping_bag</span>
                     <p>Aggiungi al carrello</p>
-                </a>
-                <span class="material-symbols-outlined favourite" onclick="favouriteAjax()">favorite</span>
+                </button>
+                <!-- <span class="material-symbols-outlined favourite" onclick="favouriteAjax()">favorite</span> -->
             </div>
             <%
             } if(product.getQuantita() == 0){
@@ -152,13 +157,14 @@
                     <span class="material-symbols-outlined">close</span>
                     <p>Prodotto terminato</p>
                 </div>
-                <span class="material-symbols-outlined favourite" onclick="favouriteAjax()">favorite</span>
+                <!-- <span class="material-symbols-outlined favourite" onclick="favouriteAjax()">favorite</span> -->
             </div>
             <%
                 }
             %>
         </div>
 
+        <!--
         <div class="containerReview">
             <%
                 if(reviewBeans.size() == 0){
@@ -223,7 +229,7 @@
                 }
             %>
 
-        </div>
+        </div> -->
     </main>
 
 <%@ include file="footer.jsp"%>

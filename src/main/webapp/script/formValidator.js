@@ -160,6 +160,7 @@ function validaDescrizioneProdotto(){
     }
 };
 
+
 function validaAddProduct() {
 
     if (validaBrandProdotto() && validaNomeProdotto() && validaPrezzoProdotto() &&
@@ -167,5 +168,14 @@ function validaAddProduct() {
     {
         document.getElementById("formAddProduct").submit();
     }
-}
+};
+
+function validaEditProduct() {
+
+    if (validaBrandProdotto() && validaNomeProdotto() && validaPrezzoProdotto() &&
+        validaQuantitaProdotto() && validaScontoProdotto() && validaDescrizioneProdotto())
+    {
+        document.getElementById("formAddProduct").submit();
+    }
+};
 

@@ -64,11 +64,17 @@ FOREIGN KEY (ID_Prodotto) REFERENCES Prodotto(ID_Prodotto)
 CREATE TABLE Ordine (
 	ID_Ordine INT AUTO_INCREMENT PRIMARY KEY,
     ID_Utente INT NOT NULL,
-    ID_Prodotto INT NOT NULL,
-    Quantità INT NOT NULL,
     Totale DOUBLE(10, 2) NOT NULL,
-    FOREIGN KEY (ID_Utente) REFERENCES Utente(ID_Utente),
-    FOREIGN KEY (ID_Prodotto) REFERENCES Prodotto(ID_Prodotto)
+    FOREIGN KEY (ID_Utente) REFERENCES Utente(ID_Utente)
+);
+
+-- Creazione della tabella relativa al prodotto ordinato
+CREATE TABLE Ordine_Prodotto (
+	ID_Ordine INT NOT NULL,
+	ID_Prodotto INT NOT NULL,
+    Quantita INT NOT NULL,
+    Prezzo DOUBLE(10, 2),
+    FOREIGN KEY (ID_Ordine) REFERENCES Ordine(ID_Ordine)
 );
 
 -- Creazione della tabella relativa ai dettagli del pagamento
@@ -76,10 +82,10 @@ CREATE TABLE Pagamento (
 	ID_Pagamento INT AUTO_INCREMENT PRIMARY KEY,
     ID_Ordine INT NOT NULL,
     Data_Pagamento DATE NOT NULL,
-    Titolare_Carta VARCHAR(60) NOT NULL,
     Numero_Carta CHAR(16) NOT NULL,
-    Scadenza DATE NOT NULL,
     CVV CHAR(3) NOT NULL,
+    Scadenza DATE NOT NULL,
+    Titolare_Carta VARCHAR(60) NOT NULL,
     FOREIGN KEY (ID_Ordine) REFERENCES Ordine(ID_Ordine)
 );
 

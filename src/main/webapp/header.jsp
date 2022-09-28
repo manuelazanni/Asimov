@@ -62,7 +62,7 @@
         <a href="catalog.jsp" class="underlineEffect">Catalogo</a>
         <a href="sales.jsp" class="underlineEffect">Offerte</a>
         <a href="news.jsp" class="underlineEffect">News</a>
-        <a href="#" class="underlineEffect">Collaborazioni</a>
+        <a href="partnership.jsp" class="underlineEffect">Collaborazioni</a>
     </nav>
 
 </body>

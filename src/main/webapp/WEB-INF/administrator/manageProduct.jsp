@@ -46,7 +46,6 @@
                     '<td>' + data[i]["sconto"] + '</td>' +
                     '<td>' + data[i]["categoria"] + '</td><td>' +
                     '<div class="buttonsTable">' +
-                    '<button class="buttonsTable--modifica" onclick="editProduct(' + data[i]["id"] + ')">Sospendi</button>' +
                     '<button class="buttonsTable--elimina" onclick="removeProduct(' + data[i]["id"] + ')">Elimina</button>' +
                     '</div></td></tr>');
             }
@@ -93,10 +92,11 @@
                 <td><%=p.getCategoria()%></td>
                 <td>
                     <div class="buttonsTable">
+                        <!--
                         <form method="get" action="ServletEditProduct">
                             <input type="hidden" value="<%=p.getId()%>" name="id">
                             <button type="submit" class="buttonsTable--modifica">Modifica</button>
-                        </form>
+                        </form> -->
                         <button class="buttonsTable--elimina" onclick="removeProduct(<%=p.getId()%>)">Elimina</button>
                     </div>
                 </td>

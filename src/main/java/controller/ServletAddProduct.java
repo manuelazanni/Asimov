@@ -20,8 +20,16 @@ public class ServletAddProduct extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
 
-        HttpSession session = request.getSession();
-        UserBean user = (UserBean) session.getAttribute("user");
+        UserBean user = (UserBean) request.getSession().getAttribute("user");
+
+        RequestDispatcher dispatcher;
+
+        if(user == null){
+            dispatcher = request.getRequestDispatcher("/WEB-INF/error.jsp");
+            request.setAttribute("msg", "Prima di continuare devi effettuare il login.");
+            request.setAttribute("redirect", "login.jsp");
+            dispatcher.include(request, response);
+        }
 
         if(user.getAmministratore() == 1){
             final Pattern patternDecimale = Pattern.compile("^(\\d+(?:[.,]\\d{2})?)$");
@@ -98,21 +106,21 @@ public class ServletAddProduct extends HttpServlet {
 
                 productDAO.doSave(product);
 
-                RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/administrator/amministratore.jsp");
+                dispatcher = request.getRequestDispatcher("WEB-INF/administrator/amministratore.jsp");
                 dispatcher.include(request, response);
             } else{
                 if (productDAO.isAlreadyRegistered(nome, descrizione)) {
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/administrator/addProduct.jsp");
+                    dispatcher = request.getRequestDispatcher("WEB-INF/administrator/addProduct.jsp");
                     request.setAttribute("msg", "Prodotto già presente");
                     dispatcher.include(request, response);
                 } else {
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/error.jsp");
+                    dispatcher = request.getRequestDispatcher("/WEB-INF/error.jsp");
                     request.setAttribute("msg", "Errore durante l'inserimento inserimento");
                     dispatcher.include(request, response);
                 }
             }
         } else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/error.jsp");
+            dispatcher = request.getRequestDispatcher("/WEB-INF/error.jsp");
             request.setAttribute("msg", "Permesso non autorizzato.");
             request.setAttribute("redirect", "index.jsp");
             dispatcher.include(request, response);

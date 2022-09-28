@@ -53,15 +53,13 @@ public class ProductDAO {
         }
     }
 
-     /*
     public void doUpdate(ProductBean productBean)
     {
         try (Connection con = ConPool.getConnection()) {
 
             Statement st = con.createStatement();
             String query = "UPDATE Prodotto SET Nome = '" + productBean.getNome() + "', Descrizione = '" + productBean.getDescrizione() + "', Prezzo = '" +
-                    productBean.getPrezzo() + "', Quantita = '" + productBean.getQuantita() + "', Path_Immagine = '" +
-                    productBean.getImmagine() +  "', ID_Categoria = '" + productBean.getCategoria() + "'WHERE ID_Prodotto = " + productBean.getId();
+                    productBean.getPrezzo() + "', Quantita = '" + productBean.getQuantita() + "', Brand = '" + productBean.getBrand() + "', Sconto = '" + productBean.getSconto() + "', Nome_Categoria = '" + productBean.getCategoria() + "'WHERE ID_Prodotto = " + productBean.getId();
             st.executeUpdate(query);
 
             st.executeUpdate(query);
@@ -70,7 +68,6 @@ public class ProductDAO {
             throw new RuntimeException(e);
         }
     }
-    } */
 
     public ProductBean doRetrieveById(int id_product) {
 

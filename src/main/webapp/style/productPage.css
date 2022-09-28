@@ -109,9 +109,11 @@
 }
 
 .addToCart--productpPage{
+    cursor: pointer;
     width: 70%;
     height: 48px;
     background-color: var(--color-900);
+    border: none;
     color: var(--color-100);
     border-radius: 5px;
     padding: 0.7rem 0;
@@ -245,6 +247,8 @@
     border: none;
     padding: 0.8rem 2rem;
 }
+
+
 
 .containerButtons .unavaible{
     border: solid 4px red;
