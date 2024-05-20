@@ -5,7 +5,7 @@
 </p>
 
 <p align="center"> 
-    <img src="media/Login.png" alt="Login" width="100%">
+    <img src="media/LoginSignup.png" alt="LoginSignup.png" width="100%">
 </p>
 
 <p align="center"> 
