@@ -23,10 +23,7 @@ Asimov è una web application sviluppata nell'ambito del corso "Tecnologie e Sof
     <img src="media/Catalogo.png" alt="Catalogo" width="100%">
 </p>
 
-## Installazione
-...
-
-## Tecnologie utilizzate
+### Tecnologie utilizzate
 - **Frontend**: HTML5, CSS3, JavaScript
 - **Backend**: Java, JSP
 - **Database**: MySQL
