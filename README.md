@@ -1,4 +1,4 @@
-# Asimov 🟠⚪
+# 🟠 Asimov ⚪
 Asimov è una web application sviluppata nell'ambito del corso "Tecnologie e Software per il Web" presso l'Università di Salerno. Il progetto ha l'obiettivo di fornire una piattaforma e-commerce per la vendita di smartphone, tablet e laptop.
 
 ## Screenshot 📷
