@@ -51,8 +51,8 @@ public class ConPool {
 			PoolProperties p = new PoolProperties();
 			p.setUrl("jdbc:mysql://localhost:3306/asimov?serverTimezone=" + TimeZone.getDefault().getID());
 			p.setDriverClassName("com.mysql.cj.jdbc.Driver");
-			p.setUsername("root");
-			p.setPassword("DynaMic_64!");
+			p.setUsername("set_your_username");
+			p.setPassword("set_your_password");
 			p.setMaxActive(100);
 			p.setInitialSize(10);
 			p.setMinIdle(10);
