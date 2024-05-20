@@ -20,7 +20,7 @@ Asimov è una web application sviluppata nell'ambito del corso "Tecnologie e Sof
     <strong> CATALOGO </strong>
 </p>
 <p align="center"> 
-    <img src="media/Catalogo.png" alt="Catalogo" width="100%">
+    <img src="media/Catalog.png" alt="Catalogo" width="100%">
 </p>
 
 ### Tecnologie utilizzate 🤔
