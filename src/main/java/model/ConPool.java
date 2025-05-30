@@ -49,10 +49,10 @@ public class ConPool {
 	public static Connection getConnection() throws SQLException {
 		if (datasource == null) {
 			PoolProperties p = new PoolProperties();
-			p.setUrl("jdbc:mysql://localhost:3306/asimov?serverTimezone=" + TimeZone.getDefault().getID());
+			p.setUrl("jdbc:mysql://db:3306/Asimov?serverTimezone=Europe/Rome");
 			p.setDriverClassName("com.mysql.cj.jdbc.Driver");
-			p.setUsername("set_your_username");
-			p.setPassword("set_your_password");
+			p.setUsername("root");
+			p.setPassword("password");
 			p.setMaxActive(100);
 			p.setInitialSize(10);
 			p.setMinIdle(10);
